@@ -4,5 +4,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+def login_view(request):
+    return render(request, 'login.html')
+
+def loginResult(request):
+    account = request.POST.get('account')
+    password = request.POST.get('password')
+    if account and password:
+        return HttpResponse("Login Successfully！")
+    else:
+        return HttpResponse("Access Denied!")

@@ -15,10 +15,14 @@
 	</div>
 	<br>
 	<div class="Login Input">
-		<p>User Account	<input type="text"></p>
-		<p>Password	<input type="password"></p>
+		<form action="loginResult" method="post">
+			{% csrf_token %}
+			<p>User Account	<input type="text" name="account" /></p>
+			<p>Password	<input type="password" name="password" /></p>
+			<input type="submit" value="提交">
+		</form>
+
 	</div>
 	<br>
-	<button>Submit</button>
 </body>
 </html>
