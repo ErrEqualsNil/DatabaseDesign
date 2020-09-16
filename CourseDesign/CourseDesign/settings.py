@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'Login.apps.LoginConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,9 +79,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'CourseDesign',
         'USER': 'root',
-        'PASSWORD': 'SCUTdatabase1',
-        'HOST': 'cdb-3d39ga20.cd.tencentcdb.com',
-        'POST': 10141,
+        'PASSWORD': 'hdeilm1718',
+        'HOST': 'localhost',
+        'POST': 3306,
     }
 }
 
