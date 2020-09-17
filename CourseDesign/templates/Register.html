@@ -16,20 +16,46 @@
 	</div>
 	<br>
 	<div class="Register Input">
-		<p>User Account	<input type="text"></p>
-		<p>User Name <input type="text"></p>
-		<form action="" method="get">
-		Sex 
-			<label><input name="Sex" type="radio" value="Male"/>Male</label>
-			<label><input name="Sex" type="radio" value="Female"/>Female</label>
+		<form action="registerResult" method="POST">
+			{% csrf_token %}
+			<p>User Account	<input type="text" name="account"></p>
+			<p>Password	<input type="password" name="password"></p>
+			<p>Password Confirm <input type="password" name="passwordConfirm"></p>
+			<br />
+			<p>User Name <input type="text" name="userName"></p>
+			<p>
+				Birthday
+				<select name="year" id="year" >
+					<script>
+					for(i=1900;i<2020;i++){
+					document.write("<option value='"+i+"'>"+i+"</option>")
+					}
+					</script>
+				</select>
+				<select name="month" id="month" >
+					<script>
+					for(i=1;i<12;i++){
+					document.write("<option value='"+i+"'>"+i+"</option>")
+					}
+					</script>
+				</select>
+				<select name="day" id="day" >
+					<script>
+					for(i=1;i<31;i++){
+					document.write("<option value='"+i+"'>"+i+"</option>")
+					}
+					</script>
+				</select>
+			</p>
+			<p>Sex
+				<label><input name="Sex" type="radio" value="Male"/>Male</label>
+				<label><input name="Sex" type="radio" value="Female"/>Female</label>
+			</p>
+			<p>College <input type="text" name="college"></p>
+			<p>Address <input type="text" name="Address"></p>
+			<input type="submit" value="提交">
 		</form>
-		<p>College <input type="text"></p>
-		<p>Major <input type="text"></p>
-		<p>Dormitory <input type="text"></p>
-		<p>Password	<input type="password"></p>
-		<p>Password Confirm <input type="password"></p>
 	</div>
 	<br>
-	<button>Submit</button>
 </body>
 </html>

@@ -11,14 +11,11 @@
 	<div class="Head">
 		<img src="" alt="Logo Position" />
 		<p>Website Name</p>
-		<p>Register a new account</p>
 	</div>
-
+	<a href="/login">登录</a> <a href="/register">注册</a>
 	<div class="Search Input">
-		<form action="searchResult" method="post">
-			{% csrf_token %}
-			<a href="/login">登录</a>
-			<br />
+		<form action="searchResult" method="get">
+
 			<input type="text" name="searchKey">
 			<input type="submit" value="搜索">
 		</form>

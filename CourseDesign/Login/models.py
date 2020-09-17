@@ -9,7 +9,7 @@ class Account(models.Model):
 class User(models.Model):
     account = models.OneToOneField(Account, on_delete=models.CASCADE, primary_key=True)
     name = models.CharField(max_length=20)
-    birthday = models.DateField(auto_now_add=True)
+    birthday = models.DateField()
     isMale = models.BooleanField(default=True)
     college = models.CharField(max_length=30)
     address = models.CharField(max_length=50)

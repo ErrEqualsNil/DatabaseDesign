@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponse
 # Create your views here.
 
 def searchResult(requests):
-    searchKey = requests.POST.get('searchKey')
+    searchKey = requests.GET.get('searchKey')
     return HttpResponse(searchKey)
 
 def searchPage(requests):
