@@ -1,5 +1,4 @@
-from django.shortcuts import render, HttpResponse
-
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 # Create your views here.
 
 def searchResult(requests):
@@ -8,3 +7,4 @@ def searchResult(requests):
 
 def searchPage(requests):
     return render(requests, 'Search.html')
+

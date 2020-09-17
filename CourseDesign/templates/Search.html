@@ -6,13 +6,18 @@
 </head>
 <style>
 	body{text-align: center}
+	#userName{display: inline}
 </style>
 <body>
 	<div class="Head">
 		<img src="" alt="Logo Position" />
 		<p>Website Name</p>
 	</div>
-	<a href="/login">登录</a> <a href="/register">注册</a>
+	{% if not request.session.user %}
+		<a href="/login">登录</a> <a href="/register">注册</a>
+	{% else %}
+		<p id="userName">{{request.session.user}}</p> <a href="/login/reLogin">重新登录</a>
+	{% endif %}
 	<div class="Search Input">
 		<form action="searchResult" method="get">
 

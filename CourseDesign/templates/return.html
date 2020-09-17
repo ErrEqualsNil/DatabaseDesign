@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<style>
+    body{text-align: center;}
+    #Time,#p{
+				font-size: 50px;
+			}
+    #message{
+        font-size: 100px;
+        color: red;
+    }
+</style>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>倒计时后跳页面</title>
+		<script>
+			function countDown(){
+				//获取初始时间
+				var time = document.getElementById("Time");
+				var href = document.getElementById("jump").href;
+				//获取到id为time标签中的数字时间
+				if(time.innerHTML == 0){
+					//等于0时清除计时，并跳转该指定页面
+					window.location.href=href;
+				}else{
+					time.innerHTML = time.innerHTML-1;
+				}
+			}
+			//1000毫秒调用一次
+			window.setInterval("countDown()",1000);
+		</script>
+	</head>
+	<body>
+        <div class="Head">
+		    <img src="" alt="Logo Position" />
+		    <p>Website Name</p>
+	    </div>
+        <p id="message">{{message}}</p>
+        <div class="countDown">
+            <p>倒计时<p id="Time">3</p>后自动跳转</p>
+        </div>
+
+        <a href={{href}} id="jump">跳转至主页</a>
+	</body>
+</html>
