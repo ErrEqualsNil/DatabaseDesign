@@ -7,3 +7,10 @@ class UserAccount(models.Model):
 
     def __str__(self):
         return self.userAccount
+
+class ManagerAccount(models.Model):
+    managerAccount = models.CharField(max_length=15, primary_key=True)
+    managerPassword = models.CharField(max_length=15)
+
+    def __str__(self):
+        return self.managerAccount
