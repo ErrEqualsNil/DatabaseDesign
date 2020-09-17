@@ -1,16 +1,17 @@
 from django.db import models
 
 # Create your models here.
-class UserAccount(models.Model):
-    userAccount = models.CharField(max_length=15, primary_key=True)
-    userPassword = models.CharField(max_length=15)
+class Account(models.Model):
+    ID = models.CharField(max_length=15, primary_key=True)
+    password = models.CharField(max_length=15)
+    isManager = models.BooleanField(default=False)
 
-    def __str__(self):
-        return self.userAccount
+class User(models.Model):
+    account = models.OneToOneField(Account, on_delete=models.CASCADE, primary_key=True)
+    name = models.CharField(max_length=20)
+    birthday = models.DateField(auto_now_add=True)
+    isMale = models.BooleanField(default=True)
+    college = models.CharField(max_length=30)
+    address = models.CharField(max_length=50)
 
-class ManagerAccount(models.Model):
-    managerAccount = models.CharField(max_length=15, primary_key=True)
-    managerPassword = models.CharField(max_length=15)
 
-    def __str__(self):
-        return self.managerAccount

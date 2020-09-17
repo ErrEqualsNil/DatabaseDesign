@@ -31,8 +31,5 @@ Django服务服务器部署 -> 选用
 
 Table design:
 
-UserAccount  储存用户账户密码
-
-`CREATE TABLE Login_useraccount (userAccount varchar(15) NOT NULL PRIMARY KEY, userPassword varchar(15) NOT NULL);`
-
-To Be Continue
+Account: ID/password/isManager
+User: name/birthday/isMale/college/address/OneToOneRelation-Account
