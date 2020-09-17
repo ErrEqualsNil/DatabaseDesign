@@ -20,5 +20,6 @@ from .views import startPage
 urlpatterns = [
     path('login/', include('Login.urls')),
     path('search/', include('SearchApp.urls')),
+    path('', startPage),
     path('admin/', admin.site.urls),
 ]
