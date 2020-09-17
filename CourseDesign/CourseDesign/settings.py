@@ -78,9 +78,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'CourseDesign',
-        'USER': 'root',
-        'PASSWORD': 'hdeilm1718',
-        'HOST': 'localhost',
+        'USER': 'CourseDesign',
+        'PASSWORD': 'SCUTdatabase',
+        'HOST': '120.55.92.87',
         'POST': 3306,
     }
 }
