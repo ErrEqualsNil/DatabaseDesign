@@ -15,18 +15,27 @@
 	</div>
 	<br>
 	<div class="Register Input">
-		<p>Admin Account	<input type="text"></p>
-		<p>Admin Name <input type="text"></p>
-		<form action="" method="get">
-		Sex 
-			<label><input name="Sex" type="radio" value="Male"/>Male</label>
-			<label><input name="Sex" type="radio" value="Female"/>Female</label>
+		<form action="registerResult" method="POST">
+			{% csrf_token %}
+			<p>Admin Account	<input type="text" name="account"></p>
+			<p>Admin Name <input type="text" name="userName"></p>
+			<p>Teacher ID <input type="text" name="id"></p>
+			<p>
+			Sex 
+				<label><input name="Sex" type="radio" value="Male"/>Male</label>
+				<label><input name="Sex" type="radio" value="Female"/>Female</label>
+			</p>
+			<p>Password	<input type="password" name="password"></p>
+			<p>Password Confirm <input type="password" name="passwordConfirm"></p>
+			<input type="submit" value="提交">
 		</form>
-		<p>Teacher ID <input type="text"></p>
-		<p>Password	<input type="password"></p>
-		<p>Password Confirm <input type="password"></p>
+		{% if messages %}
+        <script>
+            {% for msg in messages %}
+                alert('{{ msg.message }}');
+            {% endfor %}
+        </script>
+   		{% endif %} 
 	</div>
-	<br>
-	<button>Submit</button>
 </body>
 </html>
