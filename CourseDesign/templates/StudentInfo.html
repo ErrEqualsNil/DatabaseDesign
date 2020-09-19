@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Student Information</title>
+<style type="text/css">
+	dl {border:1px solid #000000;}
+</style>
+</head>
+<body>
+	<div class="Head">
+		<img src="" alt="Logo Position" />
+		<p>Website Name</p>
+	</div>
+	<div class="PersonalInfo">
+		<p>Account: {{ datas.Account }}		Name: {{ datas.Name }}</p>
+		<p>Birthday: {{ datas.Birthday }}   Sex: {{ datas.Sex }} </p>
+		<p>College: {{ datas.College }}		Address: {{ datas.Address }}</p>
+	</div>
+	{% for good in good_list %}
+	<div class="list_box">
+		<dl>
+			<dt>{{ good.ID }}  {{ good.Name }}</dt>
+			<dd>Price: {{ good.Price }}</dd>
+			<dd>Description: {{ good.Description }}</dd>
+		</dl>
+	</div>
+	{% endfor %}
+</body>
+</html>
