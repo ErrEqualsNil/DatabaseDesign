@@ -9,4 +9,4 @@ def InfoPage(request):
     goods = []
     for good in good_list:
         goods.append({'ID': good.ID, 'Name': good.name, 'Price': good.price, 'Description': good.description})
-    return render(request, 'StudentInfo.html', {'datas': datas, 'goods': goods})
+    return render(request, 'StudentInfo.html', {'datas': datas, 'goods': goods, 'len': len(goods)})
