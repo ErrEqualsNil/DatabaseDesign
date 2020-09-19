@@ -6,22 +6,39 @@
 </head>
 <style>
 	body{text-align: center}
-	#userName{display: inline}
-	img{display: inline-block; width: 100%; max-width: 100%; height: auto;}
+	.toolbar {height: 50px; width:100%; margin-left: 0; background:rgb(189, 181, 181); position: fixed; top: 0; margin-bottom: 5px;}
+    .toolbar ul{width: auto; list-style-type: none; white-space:nowrap; overflow: hidden; margin-left: 5%; padding: 0;}
+    .toolbar li { float:left; margin-right:2%; position: relative; overflow: hidden;vertical-align: middle;}
+    .toolbar li a{ display: block; color:white; text-align: center; padding: 3px; overflow: hidden; text-decoration: none;}
 </style>
 <body>
-	<div class="Head">
-		<img src="https://xinshi-pics.oss-cn-hangzhou.aliyuncs.com/database-design/images/logo.png" alt="Logo Position" />
-		<p>Website Name</p>
+	<div class="toolbar">
+		<ul>
+			<li>
+				<a>Database Course Design</a>
+			</li>
+			<li>
+				<a href="/search">搜索</a>
+			</li>
+			<li>
+				<a href="/studentinfo">个人信息</a>
+			</li>
+			<li>
+				{% if not request.session.user %}
+					<a href="/login">登录</a>
+				{% else %}
+					<a>用户 ： {{request.session.user}}</a> <a href="/login/reLogin">重新登录</a>
+				{% endif %}
+			</li>
+			{% if request.session.user %}
+			<li>
+				<a href="/login/reLogin">注销</a>
+			</li>
+			{% endif %}
+		</ul>
 	</div>
-	{% if not request.session.user %}
-		<a href="/login">登录</a> 
-	{% else %}
-		<a id="userName" href="/studentinfo">{{request.session.user}}</a> <a href="/login/reLogin">重新登录</a>
-	{% endif %}
-	<div class="Search Input">
+	<div class="SearchInput" style="margin-top:100px">
 		<form action="searchResult" method="get">
-
 			<input type="text" name="searchKey">
 			<input type="submit" value="搜索">
 		</form>
