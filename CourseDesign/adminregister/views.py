@@ -16,21 +16,21 @@ def registerResult(requests):
     confirm = requests.POST.get('passwordConfirm')
     if password != confirm:
         return HttpResponse('二次密码输入错误')
-    isManager = False
-    ID = requests.POST.get('id')
+    isManager = True
+    ID = requests.POST.get('account')
     name = requests.POST.get('userName')
     isMale = True if requests.POST.get('Sex') == 'Male' else False
 
     try:
         account = Account.objects.create(ID=ID, password=password, isManager=isManager)
-        account.save()
         teacher = Teacher.objects.create(account=account, name=name,
                                          isMale=isMale)
-    except Exception as e:
+    except Exception:
         messages.success(requests, "Account already exist")
         return HttpResponseRedirect('/adminregister')
 
-    return HttpResponse('注册成功')
+    requests.session['user'] = ID
+    return render(requests, 'return.html', {'message': "注册成功", 'href': "/search"})
 
 
 # Create your views here.

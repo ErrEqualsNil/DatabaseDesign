@@ -9,17 +9,16 @@
 </head>
 <body>
 	<div class="Head">
-		<img src="" alt="Logo Position" />
+		<img src="https://xinshi-pics.oss-cn-hangzhou.aliyuncs.com/database-design/images/logo.png" alt="Logo Position" />
 		<p>Website Name</p>
 		<p>Register a new account</p>
 	</div>
 	<br>
 	<div class="Register Input">
-		<form action="registerResult" method="POST">
+		<form action="RegisterResult" method="POST">
 			{% csrf_token %}
 			<p>Admin Account	<input type="text" name="account"></p>
 			<p>Admin Name <input type="text" name="userName"></p>
-			<p>Teacher ID <input type="text" name="id"></p>
 			<p>
 			Sex 
 				<label><input name="Sex" type="radio" value="Male"/>Male</label>
@@ -35,7 +34,7 @@
                 alert('{{ msg.message }}');
             {% endfor %}
         </script>
-   		{% endif %} 
+   		{% endif %}
 	</div>
 </body>
 </html>

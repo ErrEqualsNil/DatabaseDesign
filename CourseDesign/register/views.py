@@ -25,12 +25,11 @@ def registerResult(requests):
 
     try:
         account = Account.objects.create(ID=ID, password=password, isManager=isManager)
-        account.save()
         user = User.objects.create(account=account, name=name,
                                    birthday=birthday, isMale=isMale,
                                    college=college, address=address)
     except Exception as e:
         messages.success(requests, "Account already exist")
         return HttpResponseRedirect('/register')
-
-    return HttpResponse('注册成功')
+    requests.session['user'] = ID
+    return render(requests, 'return.html', {'message': "注册成功", 'href': "/search"})

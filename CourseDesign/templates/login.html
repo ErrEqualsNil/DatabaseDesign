@@ -6,13 +6,14 @@
 </head>
 <style>
 	body{text-align: center}
+	img{display: inline-block; width: 100%; max-width: 100%; height: auto;}
 </style>
 <body>
 	<div class="Head">
-		<img src="" alt="Logo Position" />
+		<img src="https://xinshi-pics.oss-cn-hangzhou.aliyuncs.com/database-design/images/logo.png" alt="Logo Position" />
 		<p>Website Name</p>
-		<p>Register a new account</p>
 	</div>
+	<p>登录</p>
 	<br>
 	<div class="Login Input">
 		<form action="loginResult" method="post">
@@ -24,7 +25,7 @@
 		</form>
 		<p>
 			Identity 
-				<label><input name="identity" type="radio" value="Student"/>Student</label>
+				<label><input name="identity" type="radio" value="Student" checked="checked" />Student</label>
 				<label><input name="identity" type="radio" value="Teacher"/>Teacher</label>
 			</p>	
 		<button onclick="getIdentity()">注册</button>
