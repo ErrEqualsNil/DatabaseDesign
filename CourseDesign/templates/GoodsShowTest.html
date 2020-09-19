@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	dl {border:1px solid #000000;}
+</style>
+
+</head>
+<body>
+
+<h1 style="text-align:center;">商品列表</h1>
+{% for data in datas %}
+	<div class="list_box">
+                    <dl>      
+                            <dt>{{ data.name }}</dt>
+                            <dd>                                
+                                <p>￥{{ data.price }}元</p>
+                                <p>{{ data.description }} </p>
+                            </dd>
+                    </dl>
+                </div>
+{% endfor %}
+
+</body>
+</html>

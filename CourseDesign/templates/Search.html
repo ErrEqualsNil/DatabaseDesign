@@ -17,7 +17,7 @@
 	{% if not request.session.user %}
 		<a href="/login">登录</a> 
 	{% else %}
-		<p id="userName">{{request.session.user}}</p> <a href="/login/reLogin">重新登录</a>
+		<a id="userName" href="/studentinfo">{{request.session.user}}</a> <a href="/login/reLogin">重新登录</a>
 	{% endif %}
 	<div class="Search Input">
 		<form action="searchResult" method="get">

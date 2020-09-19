@@ -6,6 +6,7 @@ class Account(models.Model):
     password = models.CharField(max_length=15)
     isManager = models.BooleanField(default=False)
 
+
 class User(models.Model):
     account = models.OneToOneField(Account, on_delete=models.CASCADE, primary_key=True)
     name = models.CharField(max_length=20)
@@ -19,5 +20,13 @@ class Teacher(models.Model):
     account = models.OneToOneField(Account, on_delete=models.CASCADE, primary_key=True)
     name = models.CharField(max_length=20)
     isMale = models.BooleanField(default=True)
+
+
+class Commodity(models.Model):
+    ID = models.CharField(max_length=15, primary_key=True)
+    name = models.CharField(max_length=20)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    Description = models.CharField(max_length=250)
+    owner = models.CharField(max_length=15)
 
 
