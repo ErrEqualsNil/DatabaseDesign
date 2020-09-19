@@ -23,7 +23,7 @@ class Teacher(models.Model):
 
 
 class Commodity(models.Model):
-    ID = models.CharField(max_length=15, primary_key=True)
+    ID = models.ForeignKey(Account, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     description = models.CharField(max_length=250)
