@@ -52,7 +52,7 @@
 					{% if not request.session.user %}
 						<a href="/login">登录</a>
 					{% else %}
-						<a>用户 ： {{request.session.user}}</a> <a href="/login/reLogin">重新登录</a>
+						<a>用户 ： {{request.session.user}}</a>
 					{% endif %}
 				</li>
 			</ul>

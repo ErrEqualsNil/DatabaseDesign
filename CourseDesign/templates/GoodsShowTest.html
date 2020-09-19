@@ -28,9 +28,14 @@
 				{% if not request.session.user %}
 					<a href="/login">登录</a>
 				{% else %}
-					<a>用户 ： {{request.session.user}}</a> <a href="/login/reLogin">重新登录</a>
+					<a>用户 ： {{request.session.user}}</a>
 				{% endif %}
 			</li>
+            {% if request.session.user %}
+			<li>
+				<a href="/login/reLogin">注销</a>
+			</li>
+			{% endif %}
 		</ul>
 	</div>
 <h1 style="text-align:center; margin-top:100px">商品列表</h1>
