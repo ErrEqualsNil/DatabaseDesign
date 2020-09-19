@@ -33,3 +33,5 @@ Table design:
 
 Account: ID/password/isManager
 User: name/birthday/isMale/college/address/OneToOneRelation-Account
+Teacher: name/isMale/OnetoOneRelation-Account
+Commodity: ID/name/price/description/owner
