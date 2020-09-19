@@ -38,20 +38,31 @@
 		<p>College: {{ datas.College }}		Address: {{ datas.Address }}</p>
 	</div>
 	<script type="text/javascript">
-	function getlen(){
-		return goods.length;
+	function Confirm(){
+		if(confirm("删除后无法恢复，是否删除"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	</script>
 	<p style="text-align:center">You have {{ len }} item(s) on sell</p>
+	<form action="DeleteItem" method="POST">
+	{% csrf_token %}
+	<input type="submit" value="删除" onclick="return Confirm();">
 	{% for good in goods %}
 	<div class="list_box">
 		<dl>
-			<dt>Item ID: {{ good.ID }}</dt>
+			<dt><label><input name="choose" type="checkbox" value={{ good.ID }} style="padding-right: 10px"/></label> Item ID: {{ good.ID }}</dt>
 			<dd>Name: {{ good.Name }}</dd>
 			<dd>Price: {{ good.Price }}</dd>
-			<dd>Description: {{ good.Description }}</dd>
+			<dd>Description: {{ good.Description }}</dd>			
 		</dl>
 	</div>
 	{% endfor %}
+	</form>
 </body>
 </html>
