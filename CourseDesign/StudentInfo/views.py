@@ -12,7 +12,7 @@ def InfoPage(request):
     good_list = Commodity.objects.filter(owner=request.session['user'])
     goods = []
     for good in good_list:
-        goods.append({'ID': good.ID, 'Name': good.name, 'Price': good.price, 'Description': good.description})
+        goods.append({'ID': good.id, 'Name': good.name, 'Price': good.price, 'Description': good.description})
     return render(request, 'StudentInfo.html', {'datas': datas, 'goods': goods, 'len': len(goods)})
 
 

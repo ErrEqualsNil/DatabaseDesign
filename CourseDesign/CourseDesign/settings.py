@@ -31,6 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'StudentInfo',
+    'GoodShowTest',
+    'adminregister',
+    'insertgoods',
     'SearchApp',
     'Login',
     'register',

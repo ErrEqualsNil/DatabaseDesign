@@ -15,7 +15,7 @@
 	<div class="toolbar">
 		<ul>
 			<li>
-				<a>Database Course Design</a>
+				<a href="/search">Database Course Design</a>
 			</li>
 			<li>
 				<a href="/search">搜索</a>
@@ -51,18 +51,20 @@
 	</script>
 	<p style="text-align:center">You have {{ len }} item(s) on sell</p>
 	<form action="DeleteItem" method="POST">
-	{% csrf_token %}
-	<input type="submit" value="删除" onclick="return Confirm();">
-	{% for good in goods %}
-	<div class="list_box">
-		<dl>
-			<dt><label><input name="choose" type="checkbox" value={{ good.ID }} style="padding-right: 10px"/></label> Item ID: {{ good.ID }}</dt>
-			<dd>Name: {{ good.Name }}</dd>
-			<dd>Price: {{ good.Price }}</dd>
-			<dd>Description: {{ good.Description }}</dd>			
-		</dl>
-	</div>
-	{% endfor %}
+		{% csrf_token %}
+		{% for good in goods %}
+		<div class="list_box">
+			<dl>
+				<dt><label><input name="choose" type="checkbox" value={{ good.ID }} style="padding-right: 10px"/></label> Item ID: {{ good.ID }}</dt>
+				<dd>Name: {{ good.Name }}</dd>
+				<dd>Price: {{ good.Price }}</dd>
+				<dd>Description: {{ good.Description }}</dd>
+			</dl>
+		</div>
+		{% endfor %}
+		<input type="submit" value="删除" onclick="return Confirm();">
 	</form>
+	<br>
+	<a href="/insertGoods"><button>上传商品</button></a>
 </body>
 </html>
