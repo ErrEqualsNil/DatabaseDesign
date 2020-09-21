@@ -31,7 +31,7 @@ Django服务服务器部署 -> 选用
 
 Table design:
 
-Account: ID/password/isManager
-User: name/birthday/isMale/college/address/OneToOneRelation-Account
-Teacher: name/isMale/OnetoOneRelation-Account
-Commodity: ForeignKey(Account, on_delete=models.CASCADE)/name/price/description/owner
+User: id/name/password/birthday/isMale/college/address/QQ/tel/email
+Teacher: id/name/password/isMale
+Commodity: name/price/description/owner/status(True表示在售/False表示已经被出售，作为交易相关的商品信息的存储)
+Transaction: buyer/seller/commodity(ForeignKey)/status/comment

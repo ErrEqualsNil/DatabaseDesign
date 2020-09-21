@@ -37,12 +37,19 @@
 			{% endif %}
 		</ul>
 	</div>
+	<div class="SearchInput" style="margin-top:100px; text-align:center;">
+		<form action="searchResult" method="get">
+			<input type="text" name="searchKey">
+			<input type="submit" value="搜索">
+		</form>
+	</div>
 	<p style="text-align:center; margin-top:200px;">共搜索到 {{len}} 件在售商品</p>
     {% for good in goods %}
 	<div class="list_box">
 		<dl>
 			<dt>Item ID: {{ good.ID }}</dt>
 			<dd>Name: {{ good.Name }}</dd>
+			<dd>Owner: {{ good.Owner }}</dd>
 			<dd>Price: {{ good.Price }}</dd>
 			<dd>Description: {{ good.Description }}</dd>
 		</dl>

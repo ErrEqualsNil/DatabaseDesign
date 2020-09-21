@@ -38,7 +38,7 @@
 	<div class="Register Input">
 		<form action="registerResult" method="POST">
 			{% csrf_token %}
-			<p>User Account	<input type="text" name="account"></p>
+			<p>User Account	<input type="text" name="id"></p>
 			<p>Password	<input type="password" name="password"></p>
 			<p>Password Confirm <input type="password" name="passwordConfirm"></p>
 			<br />
@@ -72,7 +72,10 @@
 				<label><input name="Sex" type="radio" value="Female"/>Female</label>
 			</p>
 			<p>College <input type="text" name="college"></p>
-			<p>Address <input type="text" name="Address"></p>
+			<p>Address <input type="text" name="address"></p>
+			<p>QQ <input type="text" name="qq"></p>
+			<p>Telephone <input type="text" name="tel"></p>
+			<p>E-mail <input type="text" name="email"></p>
 			<input type="submit" value="提交">
 		</form>
 		{% if messages %}

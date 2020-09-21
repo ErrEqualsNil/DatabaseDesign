@@ -33,11 +33,11 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'StudentInfo',
     'GoodShowTest',
-    'adminregister',
     'insertgoods',
     'SearchApp',
     'Login',
     'register',
+    'Model',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

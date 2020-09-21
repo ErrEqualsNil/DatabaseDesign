@@ -38,29 +38,17 @@
 	<div class="Login Input" >
 		<form action="loginResult" method="post">
 			{% csrf_token %}
-			<p>User Account	<input type="text" name="account" /></p>
+			<p>User Account	<input type="text" name="id" /></p>
 			<p>Password	<input type="password" name="password" /></p>
+			<p>
+				Identity
+					<label><input name="identity" type="radio" value="Student" checked="checked" />Student</label>
+					<label><input name="identity" type="radio" value="Teacher"/>Teacher</label>
+			</p>
 			<input type="submit" value="提交">  
 		</form>
-		<p>
-			Identity 
-				<label><input name="identity" type="radio" value="Student" checked="checked" />Student</label>
-				<label><input name="identity" type="radio" value="Teacher"/>Teacher</label>
-			</p>	
-		<button onclick="getIdentity()">注册</button>
-			<script type="text/javascript">
-			function getIdentity(){
-				var res = document.getElementsByName("identity");
-				for(var i = 0; i < res.length; i++){
-					if(res[i].checked){
-						if(res[i].value == "Teacher")
-							location.href = "/adminregister";
-						else
-							location.href = "/register";
-					}
-				}
-			}
-			</script>
+		<br>
+		<a href="/register"><button>注册</button></a>
 	</div>
 	
 	<br>
