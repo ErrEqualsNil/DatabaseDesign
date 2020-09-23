@@ -1,6 +1,7 @@
-from django.urls import path
+from django.urls import path, re_path
+from django.conf.urls import url
 from . import views
 urlpatterns = [
     path('', views.modifyGoods),
-    path('', views.modifyResult)
+    path('modifyResult/', views.modifyResult),
 ]

@@ -32,14 +32,21 @@
 		</ul>
 	</div>
 
+
     <div style="margin-top:100px; text-align:center;" class="main">
-        <form action="modifyResult" method="post" enctype="multipart/form-data">
+		<script language="JavaScript">
+		function Submit(x){
+			document.form.action = "modifyResult/?id=" + String(x);
+			document.form.submit();
+		}
+		</script>
+        <form action="" name="form" id="form" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
             <p>商品名 <input type="text" name="itemName" value="{{ datas.Name }}"></p>
             <p>价格 <input type="text" name="itemPrice" value="{{ datas.Price }}"></p>
             <p>商品描述 <input type="text" name="itemDescription" value="{{ datas.Description }}"></p>
-			<p>上传图片 <input class="Image" accept="image/*" type="file" name="img"></p>
-            <input type="submit" value="提交">
+			<p>商品图 <input type="file" name="itemImage" accept="image/*"></p>
+            <input type="button" value="提交" onclick="Submit({{ datas.ID }});">
         </form>
     </div>
 </body>

@@ -13,18 +13,12 @@ def insertGoodsResult(requests):
     itemName = requests.POST.get('itemName')
     itemPrice = requests.POST.get('itemPrice')
     itemDescription = requests.POST.get('itemDescription')
-<<<<<<< HEAD:CourseDesign/Insertgoods/views.py
-=======
-
-
     key = 'LTAI4FzSxsTG9WmSi4UhykiP'
     password = 'FPI6XHyeybIFahASoJzQ30YBzd6yjK'
     auth = oss2.Auth(key, password)
     endpoint = "http://oss-cn-beijing.aliyuncs.com"
     bucket = oss2.Bucket(auth, endpoint, 'database-design')
     itemImage = requests.FILES.get("itemImage")
-
->>>>>>> origin/master:CourseDesign/insertgoods/views.py
     try:
         item = Commodity.objects.create(name=itemName, price=itemPrice,
                                 description=itemDescription, owner=requests.session['user'],
