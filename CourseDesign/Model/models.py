@@ -29,7 +29,6 @@ class Commodity(models.Model):
     description = models.CharField(max_length=250)
     owner = models.CharField(max_length=15)
     status = models.BooleanField(default=True)
-    image = models.ImageField()
 
 
 class Transaction(models.Model):
