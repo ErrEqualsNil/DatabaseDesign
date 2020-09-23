@@ -20,10 +20,11 @@ from .views import startPage
 urlpatterns = [
     path('login/', include('Login.urls')),
     path('search/', include('SearchApp.urls')),
-    path('register/', include('register.urls')),
+    path('Register/', include('Register.urls')),
     path('', startPage),
     path('admin/', admin.site.urls),
     path('goodsshowtest/', include('GoodShowTest.urls')),
     path('studentinfo/', include('StudentInfo.urls')),
-    path('insertGoods/', include('insertgoods.urls')),
+    path('insertGoods/', include('Insertgoods.urls')),
+    path('modifyGoods/', include('ModifyGoods.urls')),
 ]

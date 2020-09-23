@@ -34,5 +34,5 @@ def registerResult(requests):
                                    email=email)
     except Exception as e:
         messages.success(requests, "Account already exist")
-        return HttpResponseRedirect('/register')
+        return HttpResponseRedirect('/Register')
     return render(requests, 'return.html', {'message': "注册成功", 'href': "/login"})

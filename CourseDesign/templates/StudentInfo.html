@@ -62,7 +62,9 @@
 				<dd>Name: {{ good.Name }}</dd>
 				<dd>Price: {{ good.Price }}</dd>
 				<dd>Description: {{ good.Description }}</dd>
+				<a href="/modifyGoods/?id={{ good.ID }}">修改</a>
 			</dl>
+
 		</div>
 		{% endfor %}
 		<input type="submit" value="删除" onclick="return Confirm();">

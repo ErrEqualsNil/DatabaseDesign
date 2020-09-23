@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Modify Goods</title>
 </head>
 <style>
     .toolbar {height: 50px; width:100%; margin-left: 0; background:rgb(189, 181, 181); position: fixed; top: 0; margin-bottom: 5px;}
@@ -33,11 +33,11 @@
 	</div>
 
     <div style="margin-top:100px; text-align:center;" class="main">
-        <form action="insertResult" method="post" enctype="multipart/form-data">
+        <form action="modifyResult" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
-            <p>商品名 <input type="text" name="itemName"></p>
-            <p>价格 <input type="text" name="itemPrice"></p>
-            <p>商品描述 <input type="text" name="itemDescription"></p>
+            <p>商品名 <input type="text" name="itemName" value="{{ datas.Name }}"></p>
+            <p>价格 <input type="text" name="itemPrice" value="{{ datas.Price }}"></p>
+            <p>商品描述 <input type="text" name="itemDescription" value="{{ datas.Description }}"></p>
 			<p>上传图片 <input class="Image" accept="image/*" type="file" name="img"></p>
             <input type="submit" value="提交">
         </form>
