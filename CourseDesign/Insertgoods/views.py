@@ -13,11 +13,10 @@ def insertGoodsResult(requests):
     itemName = requests.POST.get('itemName')
     itemPrice = requests.POST.get('itemPrice')
     itemDescription = requests.POST.get('itemDescription')
-    img = requests.FILES.get('img')
     try:
         item = Commodity.objects.create(name=itemName, price=itemPrice,
                                         description=itemDescription, owner=requests.session['user'],
-                                        status=True, image=img)
+                                        status=True)
         return render(requests, 'return.html',
                       {'message': "添加成功", 'href': "/studentinfo"})
     except Exception as e:
