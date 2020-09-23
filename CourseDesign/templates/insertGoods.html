@@ -33,10 +33,12 @@
 	</div>
 
     <div style="margin-top:100px; text-align:center;" class="main">
-        <form action="insertResult" method="get">
+        <form action="insertResult" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
             <p>商品名 <input type="text" name="itemName"></p>
             <p>价格 <input type="text" name="itemPrice"></p>
             <p>商品描述 <input type="text" name="itemDescription"></p>
+			<p>商品图 <input type="file" name="itemImage" accept="image/*"></p>
             <input type="submit" value="提交">
         </form>
     </div>
