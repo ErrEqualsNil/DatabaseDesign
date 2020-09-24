@@ -8,7 +8,7 @@ import oss2
 def modifyGoods(requests):
     id = requests.GET.get('id')
     tmp = Commodity.objects.filter(id=id)[0]
-    datas = {'ID': id, 'Name': tmp.name, 'Price': tmp.price, 'Description': tmp.description}
+    datas = {'ID': id, 'Name': tmp.name, 'Price': tmp.price, 'Description': tmp.description, 'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(id) + ".jpg"}
     return render(requests, 'ModifyGoods.html', {'datas': datas})
 
 

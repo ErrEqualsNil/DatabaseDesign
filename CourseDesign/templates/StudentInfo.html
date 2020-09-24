@@ -40,6 +40,7 @@
 		<p>Telephone: {{ datas.Telephone }}</p>
 		<p>E-mail: {{ datas.Email }}</p>
 	</div>
+	<a href="/modifyInfo/?account={{ datas.Account }}">修改个人信息</a>
 	<script type="text/javascript">
 	function Confirm(){
 		if(confirm("删除后无法恢复，是否删除"))
@@ -58,7 +59,9 @@
 		{% for good in goods %}
 		<div class="list_box">
 			<dl>
-				<dt><label><input name="choose" type="checkbox" value={{ good.ID }} style="padding-right: 10px"/></label> Item ID: {{ good.ID }}</dt>
+				<dt><label><input name="choose" type="checkbox" value={{ good.ID }} style="padding-right: 10px"/></label></dt>
+				<dt><img src="{{ good.image }}" alt="图片" width="100px" height="100px"></dt>
+				<dd> Item ID: {{ good.ID }}</dd>
 				<dd>Name: {{ good.Name }}</dd>
 				<dd>Price: {{ good.Price }}</dd>
 				<dd>Description: {{ good.Description }}</dd>

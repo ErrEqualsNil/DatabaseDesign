@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from Model.models import User
-import datetime
+import datetime, time
 # Create your views here.
 
 def registerPage(requests):
@@ -16,9 +16,14 @@ def registerResult(requests):
         return HttpResponse('二次密码输入错误')
     id = requests.POST.get('id')
     name = requests.POST.get('userName')
-    birthday = datetime.date(int(requests.POST.get('year')),
-                             int(requests.POST.get('month')),
-                             int(requests.POST.get('day')))
+    year = int(requests.POST.get('year'))
+    month = int(requests.POST.get('month'))
+    day = int(requests.POST.get('day'))
+    try:
+        time.strptime(str(year) + " " + str(month) + " " + str(day), "%Y %m %d")
+    except Exception as e:
+        return HttpResponse('日期错误')
+    birthday = datetime.date(year, month, day)
     isMale = True if requests.POST.get('Sex') == 'Male' else False
     college = requests.POST.get('college')
     address = requests.POST.get('address')

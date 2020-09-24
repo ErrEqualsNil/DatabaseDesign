@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modify Personal information</title>
+</head>
+<style>
+	body{text-align: center;}
+	img{display: inline-block; width: 100%; max-width: 100%; height: auto;}
+	.toolbar {height: 50px; width:100%; margin-left: 0; background:rgb(189, 181, 181); position: fixed; top: 0; margin-bottom: 5px;}
+    .toolbar ul{width: auto; list-style-type: none; white-space:nowrap; overflow: hidden; margin-left: 5%; padding: 0;}
+    .toolbar li { float:left; margin-right:2%; position: relative; overflow: hidden;vertical-align: middle;}
+    .toolbar li a{ display: block; color:white; text-align: center; padding: 3px; overflow: hidden; text-decoration: none;}
+</style>
+</head>
+<body>
+    <div class="toolbar">
+		<ul>
+			<li>
+				<a href="/search">Database Course Design</a>
+			</li>
+			<li>
+				<a href="/search">搜索</a>
+			</li>
+			<li>
+				<a href="/studentinfo">个人信息</a>
+			</li>
+			<li>
+				{% if not request.session.user %}
+					<a href="/login">登录</a>
+				{% else %}
+					<a>用户 ： {{request.session.user}}</a>
+				{% endif %}
+			</li>
+		</ul>
+	</div>
+    <p style="margin-top:100px">修改</p>
+    <br>
+    <div class="Modify Input">
+		<form action="" id="form" name="form" method="post">
+			{% csrf_token %}
+			<p>New Password	<input type="password" name="newPassword"></p>
+			<p>Password Confirm <input type="password" name="passwordConfirm"></p>
+            <p>Original Password <input type="password" name="originalPassword"></p>
+			<br />
+			<p>User Name <input type="text" name="userName" value="{{ datas.Name }}"></p>
+			<p>
+				Birthday
+				<select name="year" id="year">
+					<script>
+					var year = "{{ datas.Birthday.year }}"
+					for(i=1900;i<2020;i++){
+                        if(i == year)
+					        document.write("<option value='"+i+"' selected>"+i+"</option>")
+					    else
+					        document.write("<option value='"+i+"'>"+i+"</option>")
+					}
+					</script>
+				</select>
+				<select name="month" id="month" >
+					<script>
+					var month = "{{ datas.Birthday.month }}"
+					for(i=1;i<=12;i++){
+					    if(i == month)
+					        document.write("<option value='"+i+"' selected>"+i+"</option>")
+					    else
+					        document.write("<option value='"+i+"'>"+i+"</option>")
+					}
+					</script>
+				</select>
+				<select name="day" id="day" >
+					<script>
+					var day = "{{ datas.Birthday.day }}"
+					for(i=1;i<=31;i++){
+					    if(i == day)
+					        document.write("<option value='"+i+"' selected>"+i+"</option>")
+					    else
+					        document.write("<option value='"+i+"'>"+i+"</option>")
+					}
+					</script>
+				</select>
+			</p>
+			<p>Sex
+                <script>
+                    var sex = "{{ datas.IsMale }}";
+                    if(sex == "True"){
+                        document.write("<label><input name='Sex' type='radio' value='Male' checked/>Male</label>")
+                        document.write("<label><input name='Sex' type='radio' value='Female'/>Female</label>")
+                    }
+                    else{
+                        document.write("<label><input name='Sex' type='radio' value='Male'/>Male</label>")
+                        document.write("<label><input name='Sex' type='radio' value='Female' checked/>Female</label>")
+                    }
+                </script>
+			</p>
+			<p>College <input type="text" name="college" value="{{ datas.College }}"></p>
+			<p>Address <input type="text" name="address" value="{{ datas.Address }}"></p>
+			<p>QQ <input type="text" name="qq" value="{{ datas.QQ }}"></p>
+			<p>Telephone <input type="text" name="tel" value="{{ datas.Tel }}"></p>
+			<p>E-mail <input type="text" name="email" value="{{ datas.Email }}"></p>
+			<input type="button" value="提交" onclick="Submit({{ datas.ID }});">
+            <script language="JavaScript">
+            function Submit(x){
+                document.form.action = "modifyResult/?account=" + String(x);
+                document.form.submit();
+            }
+            </script>
+		</form>
+		{% if messages %}
+        <script>
+            {% for msg in messages %}
+                alert('{{ msg.message }}');
+            {% endfor %}
+        </script>
+   		 {% endif %}
+	</div>
+</body>
+</html>

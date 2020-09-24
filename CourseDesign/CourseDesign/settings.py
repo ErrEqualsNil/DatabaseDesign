@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'Register',
     'Model',
     'ModifyGoods',
+    'ModifyInfo',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

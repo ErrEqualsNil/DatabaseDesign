@@ -45,6 +45,7 @@
             <p>商品名 <input type="text" name="itemName" value="{{ datas.Name }}"></p>
             <p>价格 <input type="text" name="itemPrice" value="{{ datas.Price }}"></p>
             <p>商品描述 <input type="text" name="itemDescription" value="{{ datas.Description }}"></p>
+			<img src="{{ datas.image }}" alt="图片" width="100px" height="100px">
 			<p>商品图 <input type="file" name="itemImage" accept="image/*"></p>
             <input type="button" value="提交" onclick="Submit({{ datas.ID }});">
         </form>

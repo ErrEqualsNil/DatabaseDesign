@@ -9,7 +9,7 @@ def searchResult(request):
     for good in good_list:
         goods.append({'ID': good.id, 'Name': good.name, 'Price': good.price,
                       'Description': good.description, 'Owner': good.owner,
-                      'image':"https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.id) + ".jpg"})
+                      'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.id) + ".jpg"})
     return render(request, 'SearchResult.html', {'goods': goods, 'len': len(goods)})
 
 
