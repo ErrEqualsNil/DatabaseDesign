@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from Model.models import Commodity, User
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+import oss2
 
 # Create your views here.
 def InfoPage(request):
@@ -23,6 +24,12 @@ def InfoPage(request):
 
 def DeleteItem(request):
     delete_list = request.POST.getlist('choose')
+    key = 'LTAI4FzSxsTG9WmSi4UhykiP'
+    password = 'FPI6XHyeybIFahASoJzQ30YBzd6yjK'
+    auth = oss2.Auth(key, password)
+    endpoint = "http://oss-cn-beijing.aliyuncs.com"
+    bucket = oss2.Bucket(auth, endpoint, 'database-design')
     for Id in delete_list:
         Commodity.objects.filter(id=Id).delete()
+        bucket.delete_object(str(Id) + '.jpg')
     return HttpResponseRedirect('/studentinfo')

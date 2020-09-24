@@ -10,6 +10,27 @@
     .toolbar li { float:left; margin-right:2%; position: relative; overflow: hidden;vertical-align: middle;}
     .toolbar li a{ display: block; color:white; text-align: center; padding: 3px; overflow: hidden; text-decoration: none;}
 </style>
+<style type="text/css">
+            #preview {
+                display: inline-block;
+                width: 100px;
+                height: 100px;
+                position: relative;
+                 background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            #itemImage {
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                position: absolute;
+                left: 0;
+                top: 0;
+                cursor: pointer;
+                z-index: 5;
+            }
+</style>
 <body>
     <div class="toolbar">
 		<ul>
@@ -38,7 +59,28 @@
             <p>商品名 <input type="text" name="itemName"></p>
             <p>价格 <input type="text" name="itemPrice"></p>
             <p>商品描述 <input type="text" name="itemDescription"></p>
-			<p>商品图 <input type="file" name="itemImage" accept="image/*"></p>
+			商品图片
+			<div id="preview" style="width:100px;heigth:100px;border:1px solid;">
+            	<input type="file" accept="image/*" id="itemImage" name="itemImage"/>
+        	</div>
+			<br>
+			<script type="text/javascript">
+            var preview = document.querySelector('#preview');
+            var eleFile = document.querySelector('#itemImage');
+            eleFile.addEventListener('change', function() {
+                var file = this.files[0];
+                // 确认选择的文件是图片
+                if(file.type.indexOf("image") == 0) {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = function(e) {
+                        // 图片base64化
+                        var newUrl = this.result;
+                        preview.style.backgroundImage = 'url(' + newUrl + ')';
+                    };
+                }
+            });
+        	</script>
             <input type="submit" value="提交">
         </form>
     </div>

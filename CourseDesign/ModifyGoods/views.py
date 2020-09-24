@@ -24,8 +24,10 @@ def modifyResult(requests):
     bucket = oss2.Bucket(auth, endpoint, 'database-design')
     itemImage = requests.FILES.get("itemImage")
     try:
-        print("id = ", id)
         item = Commodity.objects.filter(id=id).update(name=itemName, price=itemPrice, description=itemDescription)
+        if itemImage is not None:
+            print(itemImage)
+            bucket.put_object(str(id) + '.jpg', itemImage)
         return HttpResponseRedirect('/studentinfo')
     except Exception as e:
         return render(requests, 'return.html',

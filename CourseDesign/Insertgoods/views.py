@@ -24,6 +24,7 @@ def insertGoodsResult(requests):
                                 description=itemDescription, owner=requests.session['user'],
                                 status=True, image="0")
         res = bucket.put_object(str(item.id) + '.jpg', itemImage)
+        print(itemImage)
         item.image = str(item.id) + '.jpg'
         item.save()
         return render(requests, 'return.html',
