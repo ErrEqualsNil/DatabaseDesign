@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<style>
-    dl {border:1px solid #000000;}
+    <title>Information</title>
+    <style type="text/css">
+	dl {border:1px solid #000000;}
 	.toolbar {height: 50px; width:100%; margin-left: 0; background:rgb(189, 181, 181); position: fixed; top: 0; margin-bottom: 5px;}
     .toolbar ul{width: auto; list-style-type: none; white-space:nowrap; overflow: hidden; margin-left: 5%; padding: 0;}
     .toolbar li { float:left; margin-right:2%; position: relative; overflow: hidden;vertical-align: middle;}
     .toolbar li a{ display: block; color:white; text-align: center; padding: 3px; overflow: hidden; text-decoration: none;}
-</style>
+    </style>
+</head>
 <body>
     <div class="toolbar">
 		<ul>
@@ -30,31 +30,26 @@
 					<a>用户 ： {{request.session.user}}</a>
 				{% endif %}
 			</li>
-			{% if request.session.user %}
-			<li>
-				<a href="/login/reLogin">注销</a>
-			</li>
-			{% endif %}
 		</ul>
 	</div>
-	<div class="SearchInput" style="margin-top:100px; text-align:center;">
-		<form action="searchResult" method="get">
-			<input type="text" name="searchKey" value="{{ key }}">
-			<input type="submit" value="搜索">
-		</form>
+    <div class="PersonalInfo" style="margin-top:100px">
+		<p>Account: {{ datas.ID }}		Name: {{ datas.Name }}</p>
+		<p>Sex: {{ datas.Sex }} </p>
+		<p>College: {{ datas.College }}</p>
+        <p>Address: {{ datas.Address }}</p>
+		<p>QQ: {{ datas.QQ }}</p>
+		<p>Telephone: {{ datas.Telephone }}</p>
+		<p>E-mail: {{ datas.Email }}</p>
 	</div>
-	<p style="text-align:center; margin-top:200px;">共搜索到 {{len}} 件在售商品</p>
     {% for good in goods %}
-	<div class="list_box">
-		<dl>
-			<dt><img src="{{good.image}}" alt="图片" width="100px" height="100px"></dt>
-			<a href="/showInfo/?id={{ good.Owner }}">Owner: {{ good.Owner }}</a>
-			<dd>Name: {{ good.Name }}</dd>
-			<dd>Price: {{ good.Price }}</dd>
-
-		</dl>
-
-	</div>
-	{% endfor %}
+		<div class="list_box">
+			<dl>
+				<dt><img src="{{ good.image }}" alt="图片" width="100px" height="100px"></dt>
+				<dd> Item ID: {{ good.ID }}</dd>
+				<dd>Name: {{ good.Name }}</dd>
+				<dd>Price: {{ good.Price }}</dd>
+			</dl>
+		</div>
+    {% endfor %}
 </body>
 </html>

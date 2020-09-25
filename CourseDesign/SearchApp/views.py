@@ -10,7 +10,7 @@ def searchResult(request):
         goods.append({'ID': good.id, 'Name': good.name, 'Price': good.price,
                       'Description': good.description, 'Owner': good.owner,
                       'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.id) + ".jpg"})
-    return render(request, 'SearchResult.html', {'goods': goods, 'len': len(goods)})
+    return render(request, 'SearchResult.html', {'goods': goods, 'len': len(goods), 'key': searchKey})
 
 
 def searchPage(requests):
