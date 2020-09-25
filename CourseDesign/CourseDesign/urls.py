@@ -29,4 +29,5 @@ urlpatterns = [
     path('modifyGoods/', include('ModifyGoods.urls')),
     path('modifyInfo/', include('ModifyInfo.urls')),
     path('showInfo/', include('ShowInfo.urls')),
+    path('itemInfo/', include('itemInfo.urls')),
 ]

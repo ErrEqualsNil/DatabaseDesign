@@ -37,29 +37,22 @@
 			{% endif %}
 		</ul>
 	</div>
-	<div class="SearchInput" style="margin-top:100px; text-align:center;">
-		<form action="searchResult" method="get">
-			<input type="text" name="searchKey" value="{{ key }}">
-			<input type="submit" value="搜索">
-		</form>
-	</div>
-	<p style="text-align:center; margin-top:200px;">共搜索到 {{len}} 件在售商品</p>
-    {% for good in goods %}
-	<div class="list_box">
-		<dl>
-			<dt>
-				<a href="/itemInfo/?id={{ good.ID }}">
-					<img src="{{good.image}}" alt="图片" width="100px" height="auto">
-					<p>Name: {{ good.Name }}</p>
-					<p>Price: {{ good.Price }}</p>
-				</a>
-			</dt>
-			<dt>
-				<a href="/showInfo/?id={{ good.Owner }}">Owner: {{ good.Owner }}</a>
-			</dt>
-		</dl>
+    <center>
+        <div class="itemInfo" style="margin: 200px; ">
+            <div class="itemImage" style="float:left; margin-left:50px;">
+                <img src="{{image}}" alt="图片" width="auto" height="300px">
+            </div>
+            <div class="itemInfo" style="float:right; margin-right:200px; font-size:20px;">
+                <p id="itemName">商品名：{{name}}</p>
+                <p id="itemPrice">商品价格：{{price}}</p>
+                <p id="itemDescription">商品描述：{{description}}</p>
+                <p id="itemOwner">
+                    <a href="/showInfo/?id={{good.Owner}}">出售人：{{owner}}</a>
+                </p>
+            </div>
+        </div>
+    </center>
 
-	</div>
-	{% endfor %}
+
 </body>
 </html>

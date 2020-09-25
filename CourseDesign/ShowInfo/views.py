@@ -13,5 +13,5 @@ def showInfo(requests):
     goods = []
     for good in good_list:
         goods.append({'ID': good.id, 'Name': good.name, 'Price': good.price, 'Description': good.description,
-                      'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.image)})
+                      'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + good.image})
     return render(requests, 'ShowInfo.html', {'datas': datas, 'goods': goods, 'len': len(goods)})
