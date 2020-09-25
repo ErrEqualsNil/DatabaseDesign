@@ -8,7 +8,7 @@ import oss2
 def modifyGoods(requests):
     id = requests.GET.get('id')
     tmp = Commodity.objects.filter(id=id)[0]
-    datas = {'ID': id, 'Name': tmp.name, 'Price': tmp.price, 'Description': tmp.description, 'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(id) + ".jpg"}
+    datas = {'ID': id, 'Name': tmp.name, 'Price': tmp.price, 'Description': tmp.description, 'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(tmp.image)}
     return render(requests, 'ModifyGoods.html', {'datas': datas})
 
 
@@ -24,11 +24,20 @@ def modifyResult(requests):
     bucket = oss2.Bucket(auth, endpoint, 'database-design')
     itemImage = requests.FILES.get("itemImage")
     try:
-        item = Commodity.objects.filter(id=id).update(name=itemName, price=itemPrice, description=itemDescription)
+        Commodity.objects.filter(id=id).update(name=itemName, price=itemPrice, description=itemDescription)
+        item = Commodity.objects.filter(id=id)[0]
         if itemImage is not None:
-            print(itemImage)
-            bucket.put_object(str(id) + '.jpg', itemImage)
+            bucket.delete_object(str(item.image))
+            print(item.image)
+            if str(item.image)[-5] == '0':
+                bucket.put_object(str(id) + '-1.jpg', itemImage)
+                item.image = str(id) + '-1.jpg'
+            else:
+                bucket.put_object(str(id) + '-0.jpg', itemImage)
+                item.image = str(id) + '-0.jpg'
+        item.save()
         return HttpResponseRedirect('/studentinfo')
     except Exception as e:
+        print(e)
         return render(requests, 'return.html',
                       {'message': "修改失败，请检查输入", 'href': "/studentinfo"})

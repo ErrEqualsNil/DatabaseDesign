@@ -23,9 +23,9 @@ def insertGoodsResult(requests):
         item = Commodity.objects.create(name=itemName, price=itemPrice,
                                 description=itemDescription, owner=requests.session['user'],
                                 status=True, image="0")
-        res = bucket.put_object(str(item.id) + '.jpg', itemImage)
+        res = bucket.put_object(str(item.id) + '-0.jpg', itemImage)
         print(itemImage)
-        item.image = str(item.id) + '.jpg'
+        item.image = str(item.id) + '-0.jpg'
         item.save()
         return render(requests, 'return.html',
                       {'message': "添加成功", 'href': "/studentinfo"})

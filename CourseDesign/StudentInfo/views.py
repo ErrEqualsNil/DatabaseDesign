@@ -18,7 +18,7 @@ def InfoPage(request):
     goods = []
     for good in good_list:
         goods.append({'ID': good.id, 'Name': good.name, 'Price': good.price, 'Description': good.description,
-                      'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.id) + ".jpg"})
+                      'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.image)})
     return render(request, 'StudentInfo.html', {'datas': datas, 'goods': goods, 'len': len(goods)})
 
 
@@ -30,6 +30,6 @@ def DeleteItem(request):
     endpoint = "http://oss-cn-beijing.aliyuncs.com"
     bucket = oss2.Bucket(auth, endpoint, 'database-design')
     for Id in delete_list:
+        bucket.delete_object(str(Commodity.objects.filter(id=Id)[0].image))
         Commodity.objects.filter(id=Id).delete()
-        bucket.delete_object(str(Id) + '.jpg')
     return HttpResponseRedirect('/studentinfo')
