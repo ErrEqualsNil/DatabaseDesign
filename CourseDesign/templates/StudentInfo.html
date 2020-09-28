@@ -60,11 +60,14 @@
 		<div class="list_box">
 			<dl>
 				<dt><label><input name="choose" type="checkbox" value={{ good.ID }} style="padding-right: 10px"/></label></dt>
-				<dt><img src="{{ good.image }}" alt="图片" width="100px" height="100px"></dt>
-				<dd> Item ID: {{ good.ID }}</dd>
-				<dd>Name: {{ good.Name }}</dd>
-				<dd>Price: {{ good.Price }}</dd>
-				<dd>Description: {{ good.Description }}</dd>
+				<dt>
+					<a href="/itemInfo/?id={{ good.ID }}">
+						<img src="{{good.image}}" alt="图片" width="100px" height="auto">
+						<p>Item ID: {{ good.ID }}</p>
+						<p>Name: {{ good.Name }}</p>
+						<p>Price: {{ good.Price }}</p>
+					</a>
+				</dt>
 				<a href="/modifyGoods/?id={{ good.ID }}">修改</a>
 			</dl>
 
