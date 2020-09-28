@@ -53,29 +53,40 @@
 		}
 	}
 	</script>
-	<p style="text-align:center">You have {{ len }} item(s) on sell</p>
-	<form action="DeleteItem" method="POST">
-		{% csrf_token %}
-		{% for good in goods %}
-		<div class="list_box">
-			<dl>
-				<dt><label><input name="choose" type="checkbox" value={{ good.ID }} style="padding-right: 10px"/></label></dt>
-				<dt>
-					<a href="/itemInfo/?id={{ good.ID }}">
-						<img src="{{good.image}}" alt="图片" width="100px" height="auto">
-						<p>Item ID: {{ good.ID }}</p>
-						<p>Name: {{ good.Name }}</p>
-						<p>Price: {{ good.Price }}</p>
-					</a>
-				</dt>
-				<a href="/modifyGoods/?id={{ good.ID }}">修改</a>
-			</dl>
+	<div class="selfItemMessages">
+		<p style="text-align:center">You have {{ len }} item(s) on sell</p>
+		<form action="DeleteItem" method="POST">
+			{% csrf_token %}
+			{% for good in goods %}
+			<div class="list_box">
+				<dl>
+					<dt><label><input name="choose" type="checkbox" value={{ good.ID }} style="padding-right: 10px"/></label></dt>
+					<dt>
+						<a href="/itemInfo/?id={{ good.ID }}">
+							<img src="{{good.image}}" alt="图片" width="100px" height="auto">
+							<p>Item ID: {{ good.ID }}</p>
+							<p>Name: {{ good.Name }}</p>
+							<p>Price: {{ good.Price }}</p>
+						</a>
+					</dt>
+					<a href="/modifyGoods/?id={{ good.ID }}">修改</a>
+				</dl>
 
-		</div>
-		{% endfor %}
-		<input type="submit" value="删除" onclick="return Confirm();">
-	</form>
-	<br>
-	<a href="/insertGoods"><button>上传商品</button></a>
+			</div>
+			{% endfor %}
+			<input type="submit" value="删除" onclick="return Confirm();">
+
+			<a href="/insertGoods">
+				<button>上传商品</button>
+			</a>
+		</form>
+		<br>
+	</div>
+
+
+	<div class="purchaseMessages">
+		<p style="text-align:center">You have {{ messageNum }} message(s)</p>
+	</div>
+
 </body>
 </html>

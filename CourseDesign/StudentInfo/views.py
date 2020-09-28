@@ -19,7 +19,7 @@ def InfoPage(request):
     for good in good_list:
         goods.append({'ID': good.id, 'Name': good.name, 'Price': good.price, 'Description': good.description,
                       'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.image)})
-    return render(request, 'StudentInfo.html', {'datas': datas, 'goods': goods, 'len': len(goods)})
+    return render(request, 'StudentInfo.html', {'datas': datas, 'goods': goods, 'len': len(goods), 'messageNum': 0})
 
 
 def DeleteItem(request):
