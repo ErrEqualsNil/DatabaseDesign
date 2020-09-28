@@ -84,7 +84,24 @@
 
 
 	<div class="purchaseMessages">
-		<p style="text-align:center">You have {{ messageNum }} message(s)</p>
+		<p style="text-align:center">你有 {{ sellMessageLen }} 条出售请求</p>
+		{% for message in sellMessage %}
+		<div class="messageDetail">
+			<dl>
+				<dt>
+					<p>Buyer: <a href="/showInfo/?id={{ message.buyer }}"> {{message.buyer}}</a></p>
+					<a href="/itemInfo/?id={{ message.commodity.id }}">
+						<img src="{{message.commodityImage}}" alt="图片" width="100px" height="auto">
+						<p>Item ID: {{ message.commodityID }}</p>
+						<p>Name: {{ message.commodityName }}</p>
+						<p>Price: {{ message.commodityPrice }}</p>
+					</a>
+					<a href="messageConfirm/?TID={{message.TID}}"><button>确认出售</button></a>
+				</dt>
+				<dt></dt>
+			</dl>
+		</div>
+		{% endfor %}
 	</div>
 
 </body>

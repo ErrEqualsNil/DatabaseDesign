@@ -6,5 +6,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.InfoPage),
     path('DeleteItem', views.DeleteItem),
+    path(r'messageConfirm/', views.ConfirmMessage),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

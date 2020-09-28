@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect
-from Model.models import Commodity, User
+from Model.models import Commodity, User, Transaction
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 import oss2
@@ -9,7 +9,7 @@ def InfoPage(request):
     if 'user' not in request.session:
         return HttpResponseRedirect("/login")
     tmp = User.objects.filter(id=request.session['user'])[0]
-    datas = {'Account': request.session['user'], 'Name': tmp.name,
+    userInfo = {'Account': request.session['user'], 'Name': tmp.name,
              'Birthday': tmp.birthday, 'Sex': 'Male' if tmp.isMale else 'Female',
              'College': tmp.college, 'Address': tmp.address,
              'QQ': tmp.QQ, 'Telephone': tmp.tel,
@@ -19,7 +19,14 @@ def InfoPage(request):
     for good in good_list:
         goods.append({'ID': good.id, 'Name': good.name, 'Price': good.price, 'Description': good.description,
                       'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.image)})
-    return render(request, 'StudentInfo.html', {'datas': datas, 'goods': goods, 'len': len(goods), 'messageNum': 0})
+    sellConfirm = Transaction.objects.filter(seller=request.session['user'], status=2)
+    confirmMessages = []
+    for m in sellConfirm:
+        confirmMessages.append({'TID':m.id, 'buyer': m.buyer, 'commodityID': m.commodity.id,
+                                'commodityName': m.commodity.name, 'commodityPrice': m.commodity.price,
+                                'commodityImage': 'https://database-design.oss-cn-beijing.aliyuncs.com/' + m.commodity.image})
+    return render(request, 'StudentInfo.html', {'datas': userInfo, 'goods': goods, 'len': len(goods),
+                                                'sellMessageLen': len(sellConfirm), 'sellMessage': confirmMessages})
 
 
 def DeleteItem(request):
@@ -33,3 +40,11 @@ def DeleteItem(request):
         bucket.delete_object(str(Commodity.objects.filter(id=Id)[0].image))
         Commodity.objects.filter(id=Id).delete()
     return HttpResponseRedirect('/studentinfo')
+
+def ConfirmMessage(requests):
+    TID = requests.GET.get('TID')
+    trans = Transaction.objects.filter(id=TID)[0]
+    trans.status = 3
+    trans.save()
+    return render(requests, 'return.html',
+                  {'message': "确认出售，请联系买家", 'href': "/search"})

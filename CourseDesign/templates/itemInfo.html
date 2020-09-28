@@ -47,9 +47,9 @@
                 <p id="itemPrice">商品价格：{{price}}</p>
                 <p id="itemDescription">商品描述：{{description}}</p>
                 <p id="itemOwner">
-                    <a href="/showInfo/?id={{owner}}">出售人：{{owner}}</a>
+                    <a href="/showInfo/?id={{ownerID}}">出售人：{{ownerName}}</a>
                 </p>
-				<a href="">
+				<a href="finishPurchase/?id={{ID}}&sellerID={{ownerID}}">
 					<button>确认购买</button>
 				</a>
             </div>
