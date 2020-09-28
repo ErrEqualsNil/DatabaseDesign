@@ -18,7 +18,7 @@ def itemInfo(request):
             'status': item.status
         }
         return render(request, 'itemInfo.html', itemInfos)
-    except Exception:
+    except Exception as e:
         return render(request, 'return.html',
                       {'message': '暂无该商品信息', 'href': "/search"})
 
