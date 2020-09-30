@@ -37,7 +37,7 @@
 			</li>
 			{% endif %}
 		</ul>
-		<ul class="rightToolbar" style="float:right;">
+		<ul class="rightToolbar" style="float:right; margin-right:40px">
 			<li>
 				<a href="/messages">信息</a>
 			</li>
@@ -67,6 +67,7 @@
 		}
 	}
 	</script>
+
 	<div class="selfItemMessages">
 		<p style="text-align:center">You have {{ len }} item(s) on sell</p>
 		<form action="DeleteItem" method="POST">
@@ -90,6 +91,7 @@
 			{% endfor %}
 			<input type="submit" value="删除" onclick="return Confirm();">
 		</form>
+		<br>
 		<a href="/insertGoods">
 				<button>上传商品</button>
 		</a>
