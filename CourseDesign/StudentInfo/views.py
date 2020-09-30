@@ -19,14 +19,8 @@ def InfoPage(request):
     for good in good_list:
         goods.append({'ID': good.id, 'Name': good.name, 'Price': good.price, 'Description': good.description,
                       'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.image)})
-    sellConfirm = Transaction.objects.filter(seller=request.session['user'], status=2)
-    confirmMessages = []
-    for m in sellConfirm:
-        confirmMessages.append({'TID':m.id, 'buyer': m.buyer, 'commodityID': m.commodity.id,
-                                'commodityName': m.commodity.name, 'commodityPrice': m.commodity.price,
-                                'commodityImage': 'https://database-design.oss-cn-beijing.aliyuncs.com/' + m.commodity.image})
-    return render(request, 'StudentInfo.html', {'datas': userInfo, 'goods': goods, 'len': len(goods),
-                                                'sellMessageLen': len(sellConfirm), 'sellMessage': confirmMessages})
+
+    return render(request, 'StudentInfo.html', {'datas': userInfo, 'goods': goods, 'len': len(goods)})
 
 
 def DeleteItem(request):
@@ -41,10 +35,3 @@ def DeleteItem(request):
         Commodity.objects.filter(id=Id).delete()
     return HttpResponseRedirect('/studentinfo')
 
-def ConfirmMessage(requests):
-    TID = requests.GET.get('TID')
-    trans = Transaction.objects.filter(id=TID)[0]
-    trans.status = 3
-    trans.save()
-    return render(requests, 'return.html',
-                  {'message': "确认出售，请联系买家", 'href': "/search"})

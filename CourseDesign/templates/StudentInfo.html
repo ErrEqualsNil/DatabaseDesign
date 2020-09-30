@@ -6,14 +6,15 @@
 <style type="text/css">
 	dl {border:1px solid #000000;}
 	.toolbar {height: 50px; width:100%; margin-left: 0; background:rgb(189, 181, 181); position: fixed; top: 0; margin-bottom: 5px;}
-    .toolbar ul{width: auto; list-style-type: none; white-space:nowrap; overflow: hidden; margin-left: 5%; padding: 0;}
+    .toolbar ul {width: auto;list-style-type: none;white-space:nowrap;overflow: hidden;margin-left: 5%;padding: 0;}
     .toolbar li { float:left; margin-right:2%; position: relative; overflow: hidden;vertical-align: middle;}
     .toolbar li a{ display: block; color:white; text-align: center; padding: 3px; overflow: hidden; text-decoration: none;}
+	.PersonalInfo {font-size:15px;}
 </style>
 </head>
 <body>
 	<div class="toolbar">
-		<ul>
+		<ul class="leftToolbar" style="float:left;">
 			<li>
 				<a href="/search">Database Course Design</a>
 			</li>
@@ -30,12 +31,25 @@
 					<a>用户 ： {{request.session.user}}</a>
 				{% endif %}
 			</li>
+			{% if request.session.user %}
+			<li>
+				<a href="/login/reLogin">注销</a>
+			</li>
+			{% endif %}
+		</ul>
+		<ul class="rightToolbar" style="float:right;">
+			<li>
+				<a href="/messages">信息</a>
+			</li>
 		</ul>
 	</div>
 	<div class="PersonalInfo" style="margin-top:100px">
-		<p>Account: {{ datas.Account }}		Name: {{ datas.Name }}</p>
-		<p>Birthday: {{ datas.Birthday }}   Sex: {{ datas.Sex }} </p>
-		<p>College: {{ datas.College }}		Address: {{ datas.Address }}</p>
+		<p>Account: {{ datas.Account }}</p>
+		<p>Name: {{ datas.Name }}</p>
+		<p>Birthday: {{ datas.Birthday }}</p>
+		<p>Sex: {{ datas.Sex }} </p>
+		<p>College: {{ datas.College }}</p>
+		<p>Address: {{ datas.Address }}</p>
 		<p>QQ: {{ datas.QQ }}</p>
 		<p>Telephone: {{ datas.Telephone }}</p>
 		<p>E-mail: {{ datas.Email }}</p>
@@ -82,27 +96,6 @@
 		<br>
 	</div>
 
-
-	<div class="purchaseMessages">
-		<p style="text-align:center">你有 {{ sellMessageLen }} 条出售请求</p>
-		{% for message in sellMessage %}
-		<div class="messageDetail">
-			<dl>
-				<dt>
-					<p>买家: <a href="/showInfo/?id={{ message.buyer }}"> {{message.buyer}}</a></p>
-					<a href="/itemInfo/?id={{ message.commodityID }}">
-						<img src="{{message.commodityImage}}" alt="图片" width="100px" height="auto">
-						<p>Item ID: {{ message.commodityID }}</p>
-						<p>Name: {{ message.commodityName }}</p>
-						<p>Price: {{ message.commodityPrice }}</p>
-					</a>
-					<a href="messageConfirm/?TID={{message.TID}}"><button>确认出售</button></a>
-				</dt>
-				<dt></dt>
-			</dl>
-		</div>
-		{% endfor %}
-	</div>
 
 </body>
 </html>

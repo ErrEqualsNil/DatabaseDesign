@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>SearchPage</title>
-</head>
-<style>
-	body{text-align: center}
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
 	.toolbar {height: 50px; width:100%; margin-left: 0; background:rgb(189, 181, 181); position: fixed; top: 0; margin-bottom: 5px;}
     .toolbar ul {width: auto;list-style-type: none;white-space:nowrap;overflow: hidden;margin-left: 5%;padding: 0;}
     .toolbar li { float:left; margin-right:2%; position: relative; overflow: hidden;vertical-align: middle;}
     .toolbar li a{ display: block; color:white; text-align: center; padding: 3px; overflow: hidden; text-decoration: none;}
+	.PersonalInfo {font-size:15px;}
 </style>
+</head>
 <body>
-	<div class="toolbar">
+    <div class="toolbar">
 		<ul class="leftToolbar" style="float:left;">
 			<li>
 				<a href="/search">Database Course Design</a>
@@ -42,14 +42,21 @@
 			</li>
 		</ul>
 	</div>
-	<div class="SearchInput" style="margin-top:100px">
-		<p style="text-align:center; font-size: 100px">二手交易平台</p>
-		<form action="searchResult" method="get">
-			<div class="searchInput">
-				<input type="text" name="searchKey">
-				<input type="submit" value="搜索">
-			</div>
-		</form>
+
+    <div class="purchaseMessages" style="margin-top:100px;">
+		<p style="text-align:center">你有 {{ sellMessageLen }} 条出售请求</p>
+		{% for message in sellMessage %}
+		<div class="messageDetail" style="border-style:double; width:500px; float:left; margin:10px;">
+			<p>买家: <a href="/showInfo/?id={{ message.buyer }}"> {{message.buyer}}</a></p>
+			<a href="/itemInfo/?id={{ message.commodityID }}">
+				<img src="{{message.commodityImage}}" alt="图片" width="100px" height="100px">
+				<p>Item ID: {{ message.commodityID }}</p>
+				<p>Name: {{ message.commodityName }}</p>
+				<p>Price: {{ message.commodityPrice }}</p>
+			</a>
+			<a href="messageConfirm/?TID={{message.TID}}"><button>确认出售</button></a>
+		</div>
+		{% endfor %}
 	</div>
 </body>
 </html>

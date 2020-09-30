@@ -30,4 +30,5 @@ urlpatterns = [
     path('modifyInfo/', include('ModifyInfo.urls')),
     path('showInfo/', include('ShowInfo.urls')),
     path('itemInfo/', include('itemInfo.urls')),
+    path('messages/', include('messages.urls')),
 ]
