@@ -36,7 +36,7 @@
 	</head>
 	<body>
 		<div class="toolbar">
-			<ul class="leftToolbar">
+			<ul>
 				<li>
 					<a href="/search">Database Course Design</a>
 				</li>
@@ -46,6 +46,7 @@
 				<li>
 					<a href="/studentinfo">个人信息</a>
 				</li>
+
 				<li>
 					{% if not request.session.user %}
 						<a href="/login">登录</a>
@@ -58,9 +59,7 @@
 					<a href="/login/reLogin">注销</a>
 				</li>
 				{% endif %}
-			</ul>
-			<ul class="rightToolbar" style="float:right; margin-right:40px">
-				<li>
+				<li style="float:right; margin-right:40px;">
 					<a href="/messages">信息</a>
 				</li>
 			</ul>

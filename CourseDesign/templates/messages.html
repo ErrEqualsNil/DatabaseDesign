@@ -46,7 +46,7 @@
     <div class="purchaseMessages" style="margin-top:100px;">
 		<p style="text-align:center">你有 {{ sellMessageLen }} 条出售请求</p>
 		{% for message in sellMessage %}
-		<div class="messageDetail" style="border-style:double; width:500px; float:left; margin:10px;">
+		<div class="messageDetail" style="border-style:double; text-align:center; width:500px; float:left; margin:10px;">
 			<p>买家: <a href="/showInfo/?id={{ message.buyer }}"> {{message.buyer}}</a></p>
 			<a href="/itemInfo/?id={{ message.commodityID }}">
 				<img src="{{message.commodityImage}}" alt="图片" width="100px" height="100px">
