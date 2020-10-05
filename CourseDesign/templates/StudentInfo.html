@@ -9,7 +9,9 @@
     .toolbar ul {width: auto;list-style-type: none;white-space:nowrap;overflow: hidden;margin-left: 5%;padding: 0;}
     .toolbar li { float:left; margin-right:2%; position: relative; overflow: hidden;vertical-align: middle;}
     .toolbar li a{ display: block; color:white; text-align: center; padding: 3px; overflow: hidden; text-decoration: none;}
-	.PersonalInfo {font-size:15px;}
+	.PersonalInfoList {list-style-type: none;}
+	.InfoHead {font-size:20px;}
+	.InfoContent {font-size: 15px; margin-left:20px;}
 </style>
 </head>
 <body>
@@ -43,15 +45,44 @@
 		</ul>
 	</div>
 	<div class="PersonalInfo" style="margin-top:100px">
-		<p>Account: {{ datas.Account }}</p>
-		<p>Name: {{ datas.Name }}</p>
-		<p>Birthday: {{ datas.Birthday }}</p>
-		<p>Sex: {{ datas.Sex }} </p>
-		<p>College: {{ datas.College }}</p>
-		<p>Address: {{ datas.Address }}</p>
-		<p>QQ: {{ datas.QQ }}</p>
-		<p>Telephone: {{ datas.Telephone }}</p>
-		<p>E-mail: {{ datas.Email }}</p>
+		<ul class="PersonalInfoList">
+			<li>
+				<span class="InfoHead">账户：</span>
+				<span class="InfoContent">{{ datas.Account }}</span>
+			</li>
+			<li>
+				<span class="InfoHead">姓名：</span>
+				<span class="InfoContent">{{ datas.Name }}</span>
+			</li>
+			<li>
+				<span class="InfoHead">生日：</span>
+				<span class="InfoContent">{{ datas.Birthday }}</span>
+			</li>
+			<li>
+				<span class="InfoHead">性别：</span>
+				<span class="InfoContent">{{ datas.Sex }}</span>
+			</li>
+			<li>
+				<span class="InfoHead">学校：</span>
+				<span class="InfoContent">{{ datas.College }}</span>
+			</li>
+			<li>
+				<span class="InfoHead">地址：</span>
+				<span class="InfoContent">{{ datas.Address }}</span>
+			</li>
+			<li>
+				<span class="InfoHead">电话：</span>
+				<span class="InfoContent">{{ datas.Telephone }}</span>
+			</li>
+			<li>
+				<span class="InfoHead">邮箱：</span>
+				<span class="InfoContent">{{ datas.Email }}</span>
+			</li>
+			<li>
+				<span class="InfoHead">QQ ：</span>
+				<span class="InfoContent">{{ datas.QQ }}</span>
+			</li>
+		</ul>
 	</div>
 	<a href="/modifyInfo/?account={{ datas.Account }}">修改个人信息</a>
 	<script type="text/javascript">
