@@ -20,6 +20,16 @@
     text-align:center;
     margin:10px;
     }
+    .list_box .itemMessages #itemImage {
+    width:90%;
+    margin:5px;
+    height:100px;
+    }
+    #itemInfo {text-decoration:none;}
+    #itemOwnerInfo{ color:gray;}
+    #itemPrice{font-size: 20px; color:red; }
+    #itemName {font-size: 15px; color:black;}
+    #itemOwner {font-size: 10px; color:gray;}
 </style>
 <body>
     <div class="toolbar">
@@ -62,12 +72,20 @@
 	<div class="list_box">
 		{% for good in goods %}
 		<div class="itemMessages">
-			<a href="/itemInfo/?id={{ good.ID }}">
-					<img src="{{good.image}}" alt="图片" width="100px" height="80px" style="margin: 5px">
-					<p>Name: {{ good.Name }}</p>
-					<p>Price: {{ good.Price }}</p>
-			</a>
-			<a href="/showInfo/?id={{ good.Owner }}">Owner: {{ good.Owner }}</a>
+			<div class="itemImageBox">
+				<a href="/itemInfo/?id={{ good.ID }}">
+					<img  id="itemImage" src="{{good.image}}" alt="商品图片">
+				</a>
+			</div>
+			<div class="itemMessageBox">
+				<a href="/itemInfo/?id={{ good.ID }}" id="itemInfo">
+					<p id="itemPrice">￥{{ good.Price }}</p>
+					<p id="itemName">{{ good.Name }}</p>
+				</a>
+				<a href="/showInfo/?id={{ good.Owner }}" id="itemOwnerInfo">
+					<p id="itemOwner">Owner: {{ good.Owner }}</p>
+				</a>
+			</div>
 		</div>
 		{% endfor %}
 	</div>
