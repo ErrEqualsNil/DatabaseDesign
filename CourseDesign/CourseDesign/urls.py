@@ -31,5 +31,6 @@ urlpatterns = [
     path('showInfo/', include('ShowInfo.urls')),
     path('itemInfo/', include('itemInfo.urls')),
     path('OrderCheck/', include('OrderCheck.urls')),
-    path('ModifyComment/', include('ModifyComment.urls'))
+    path('ModifyComment/', include('ModifyComment.urls')),
+    path('messages/', include('messages.urls'))
 ]
