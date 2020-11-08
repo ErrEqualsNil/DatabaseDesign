@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Model',
     'ModifyGoods',
     'ModifyInfo',
+    'OrderCheck',
     'ShowInfo',
     'django.contrib.admin',
     'django.contrib.auth',

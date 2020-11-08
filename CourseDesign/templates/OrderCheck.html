@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Information</title>
+<style type="text/css">
+	dl {border:1px solid #000000;}
+	.toolbar {height: 50px; width:100%; margin-left: 0; background:rgb(189, 181, 181); position: fixed; top: 0; margin-bottom: 5px;}
+    .toolbar ul{width: auto; list-style-type: none; white-space:nowrap; overflow: hidden; margin-left: 5%; padding: 0;}
+    .toolbar li { float:left; margin-right:2%; position: relative; overflow: hidden;vertical-align: middle;}
+    .toolbar li a{ display: block; color:white; text-align: center; padding: 3px; overflow: hidden; text-decoration: none;}
+</style>
+</head>
+<body>
+    <div class="toolbar">
+		<ul>
+			<li>
+				<a href="/search">Database Course Design</a>
+			</li>
+			<li>
+				<a href="/search">搜索</a>
+			</li>
+			<li>
+				<a href="/studentinfo">个人信息</a>
+			</li>
+			<li>
+				{% if not request.session.user %}
+					<a href="/login">登录</a>
+				{% else %}
+					<a>用户 ： {{request.session.user}}</a>
+				{% endif %}
+			</li>
+		</ul>
+	</div>
+
+	<div class="selfTransMessages">
+		<p style="text-align:center">You have {{ len }} item(s) on sell</p>
+		{% for tran in Trans %}
+		<div class="list_box">
+				<dl>
+
+					<dt>
+						<a href="/itemInfo/?id={{ tran.ID }}">
+							<img src="{{tran.image}}" alt="图片" width="100px" height="auto">
+							<p>Transaction ID: {{ tran.ID }}</p>
+							<p>Name: {{ tran.Name }}</p>
+							<p>Price: {{ tran.Price }}</p>
+							<p>Description: {{tran.Description}}</p>
+							<p>Seller: {{ tran.Seller }}</p>
+							<p>Buyer: {{ tran.Buyer }}</p>
+							<p>Status: {{ tran.Statue }}</p>
+						</a>
+					</dt>
+					<a href="/ModifyComment/?id={{ tran.ID }}">评论</a>
+				</dl>
+		</div>
+		{% endfor %}
+	</div>
+</body>
+</html>
