@@ -30,6 +30,20 @@
     #itemPrice{font-size: 20px; color:red; }
     #itemName {font-size: 15px; color:black;}
     #itemOwner {font-size: 10px; color:gray;}
+
+    .notice {
+		width:8px;
+		height:8px;
+		line-height:6px;
+		font-size:3px;
+		color:#fff;
+		text-align:center;
+		background-color:#f00;
+		border-radius:8px;
+		position:absolute;
+		right:-0px;
+		top:0px;
+	}
 </style>
 <body>
     <div class="toolbar">
@@ -56,8 +70,15 @@
 				<a href="/login/reLogin">注销</a>
 			</li>
 			{% endif %}
-			<li style="float:right; margin-right:40px;">
-				<a href="/messages">信息</a>
+			<li style="float:right; margin-right:40px;;width:70px">
+				<a href="/messages" >信息</a>
+					{% if request.session.message > 99 %}
+							<a class="notice" style="width:24px">99+</a>
+						{% elif request.session.message > 9 %}
+							<a class="notice" style="width:16px">{{ request.session.message }}</a>
+						{% elif request.session.message > 0 %}
+							<a class="notice" style="width:8px">{{ request.session.message }}</a>
+						{% endif %}
 			</li>
 		</ul>
 	</div>

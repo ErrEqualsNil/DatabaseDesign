@@ -19,7 +19,8 @@ def InfoPage(request):
     for good in good_list:
         goods.append({'ID': good.id, 'Name': good.name, 'Price': good.price, 'Description': good.description,
                       'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.image)})
-
+    sellConfirm = Transaction.objects.filter(seller=request.session['user'], status=2)
+    request.session['message'] = len(sellConfirm)
     return render(request, 'StudentInfo.html', {'datas': userInfo, 'goods': goods, 'len': len(goods)})
 
 

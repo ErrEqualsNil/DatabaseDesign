@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
-from Model.models import Commodity
+from Model.models import Commodity, Transaction
 # Create your views here.
 
 def searchResult(request):
@@ -13,6 +13,8 @@ def searchResult(request):
         goods.append({'ID': good.id, 'Name': good.name, 'Price': good.price,
                     'Description': good.description, 'Owner': good.owner,
                     'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.image)})
+    sellConfirm = Transaction.objects.filter(seller=request.session['user'], status=2)
+    request.session['message'] = len(sellConfirm)
     return render(request, 'SearchResult.html', {'goods': goods, 'len': len(goods), 'key': searchKey})
 
 

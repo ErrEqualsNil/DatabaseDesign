@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponseRedirect, HttpResponse
-from Model.models import User, Teacher
+from Model.models import User, Teacher, Transaction
 import json
 def loginPage(request):
     return render(request, 'login.html')
@@ -17,6 +17,8 @@ def loginResult(requests):
             if User.objects.filter(id=account, password=password):
                 requests.session['user'] = account
                 requests.session['type'] = 'Student'
+                sellConfirm = Transaction.objects.filter(seller=requests.session['user'], status=2)
+                requests.session['message'] = len(sellConfirm)
                 return render(requests, 'return.html', {'message': "登录成功", 'href': "/search"})
             else:
                 return render(requests, 'return.html', {'message': "账号或密码错误", 'href':"/login"})
@@ -24,6 +26,7 @@ def loginResult(requests):
             if Teacher.objects.filter(id=account, password=password):
                 requests.session['user'] = account
                 requests.session['type'] = 'Teacher'
+
                 return render(requests, 'return.html', {'message': "登录成功", 'href': "/search"})
             else:
                 return render(requests, 'return.html', {'message': "账号或密码错误", 'href':"/login"})
