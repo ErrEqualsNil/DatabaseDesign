@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from Model.models import Commodity, Transaction, User
+from django.db import transaction
 # Create your views here.
 
 def itemInfo(request):
@@ -31,17 +32,19 @@ def finishPurchase(requests):
     commodityID = requests.GET.get('id')
     status = 2
     try:
-        commodity = Commodity.objects.filter(id=commodityID)[0]
-        if commodity.status == True:
-            Transaction.objects.create(buyer=buyer, seller=seller,
-                                       commodity=commodity,
-                                       status=status)
-            commodity.status = False
-            commodity.save()
-            return render(requests, 'return.html',
-                          {'message': "购买成功,待卖家确认", 'href': "/search"})
-        else:
-            raise Exception("手慢了 该商品已被购买！")
+        with transaction.atomic():
+            commodity = Commodity.objects.filter(id=commodityID)[0]
+            if commodity.status == True:
+                Transaction.objects.create(buyer=buyer, seller=seller,
+                                           commodity=commodity,
+                                           status=status)
+                commodity.status = False
+                commodity.save()
+                return render(requests, 'return.html',
+                              {'message': "购买成功,待卖家确认", 'href': "/search"})
+            else:
+                raise Exception("手慢了 该商品已被购买！")
     except Exception as e:
         return render(requests, 'return.html',
                       {'message': e, 'href': "/search"})
+

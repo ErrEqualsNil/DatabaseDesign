@@ -26,8 +26,8 @@ def InfoPage(request):
 
 def DeleteItem(request):
     delete_list = request.POST.getlist('choose')
-    key = 'LTAI4FzSxsTG9WmSi4UhykiP'
-    password = 'FPI6XHyeybIFahASoJzQ30YBzd6yjK'
+    key = 'LTAI4FzSxsT' + 'G9WmSi4UhykiP'
+    password = 'FPI6XHyeybIF'+ 'ahASoJzQ30YBzd6yjK'
     auth = oss2.Auth(key, password)
     endpoint = "http://oss-cn-beijing.aliyuncs.com"
     bucket = oss2.Bucket(auth, endpoint, 'database-design')

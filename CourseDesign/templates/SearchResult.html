@@ -69,7 +69,6 @@
 			<li>
 				<a href="/login/reLogin">注销</a>
 			</li>
-			{% endif %}
 			<li style="float:right; margin-right:40px;;width:70px">
 				<a href="/messages" >信息</a>
 					{% if request.session.message > 99 %}
@@ -80,6 +79,7 @@
 							<a class="notice" style="width:8px">{{ request.session.message }}</a>
 						{% endif %}
 			</li>
+			{% endif %}
 		</ul>
 	</div>
 	<div class="SearchInput" style="margin-top:100px; text-align:center;">

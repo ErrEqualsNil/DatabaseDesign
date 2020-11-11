@@ -4,6 +4,7 @@ from Model.models import Commodity,Transaction
 from django.contrib import messages
 # Create your views here.
 
+
 def loadHTML(requests):
     sellConfirm = Transaction.objects.filter(seller=requests.session['user'], status=2)
     confirmMessages = []
