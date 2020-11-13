@@ -1,17 +1,37 @@
 from django.shortcuts import render
-
-# Create your views here.
-from django.http import HttpResponseRedirect, HttpResponse
+from django import forms
+from captcha.fields import CaptchaField, CaptchaStore
+from captcha.views import captcha_image_url
+from django.contrib import messages
 from Model.models import User, Teacher, Transaction
 import json
+
+
+class Capt(forms.Form):
+    captcha = CaptchaField(
+        label='验证码',
+        required=True,
+        error_messages={
+            'required': '验证码不能为空'
+        }
+    )
+
+
 def loginPage(request):
-    return render(request, 'login.html')
+    hashkey = CaptchaStore.generate_key()
+    image_url = captcha_image_url(hashkey)
+    login_form = Capt()
+    return render(request, 'login.html', locals())
 
 def loginResult(requests):
     account = requests.POST.get('id')
     password = requests.POST.get('password')
     identity = requests.POST.get('identity')
     print('identity ', identity)
+    capt = Capt(requests.POST)
+    if not capt.is_valid():
+        return render(requests, 'return.html', {'message': "验证码错误", 'href': "/login"})
+
     if account and password:
         if identity == 'Student':
             if User.objects.filter(id=account, password=password):

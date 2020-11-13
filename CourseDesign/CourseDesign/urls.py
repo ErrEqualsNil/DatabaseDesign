@@ -32,5 +32,6 @@ urlpatterns = [
     path('itemInfo/', include('itemInfo.urls')),
     path('OrderCheck/', include('OrderCheck.urls')),
     path('ModifyComment/', include('ModifyComment.urls')),
-    path('messages/', include('messages.urls'))
+    path('messages/', include('messages.urls')),
+    path('captcha/', include('captcha.urls')),
 ]

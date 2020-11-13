@@ -45,12 +45,28 @@
 					<label><input name="identity" type="radio" value="Student" checked="checked" />Student</label>
 					<label><input name="identity" type="radio" value="Teacher"/>Teacher</label>
 			</p>
+			<p class="field">
+				  <img src="{{ image_url}}" alt="captcha" class="captcha"  style="width:80px;height:45px">
+				  <input autocomplete="off" id="id_captcha_1" name="captcha_1" type="text" placeholder="输入验证码">
+				  <input id="id_reg_captcha_0" name="captcha_0" type="hidden" value="{{ hashkey }}">
+				<script>
+					$(function(){
+
+        $('.captcha').click(function(){
+        console.log('click');
+         $.getJSON("/captcha/refresh/",
+                  function(result){
+             $('.captcha').attr('src', result['image_url']);
+             $('#id_captcha_0').val(result['key'])
+          });});
+				</script>
+			</p>
 			<input type="submit" value="提交">  
 		</form>
 		<br>
 		<a href="/Register"><button>注册</button></a>
 	</div>
-	
+
 	<br>
 </body>
 </html>
