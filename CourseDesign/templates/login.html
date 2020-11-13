@@ -13,6 +13,7 @@
     .toolbar li a{ display: block; color:white; text-align: center; padding: 3px; overflow: hidden; text-decoration: none;}
 </style>
 <body>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
 	<div class="toolbar">
 		<ul>
 			<li>
@@ -36,7 +37,7 @@
 	<p style="margin-top:100px">登录</p>
 	<br>
 	<div class="Login Input" >
-		<form action="loginResult" method="post">
+		<form action="loginResult" method="">
 			{% csrf_token %}
 			<p>User Account	<input type="text" name="id" /></p>
 			<p>Password	<input type="password" name="password" /></p>
@@ -46,23 +47,23 @@
 					<label><input name="identity" type="radio" value="Teacher"/>Teacher</label>
 			</p>
 			<p class="field">
-				  <img src="{{ image_url}}" alt="captcha" class="captcha"  style="width:80px;height:45px">
+				  <img src="{{ image_url }}" alt="captcha" id="captcha" style="width:80px;height:45px">
 				  <input autocomplete="off" id="id_captcha_1" name="captcha_1" type="text" placeholder="输入验证码">
-				  <input id="id_reg_captcha_0" name="captcha_0" type="hidden" value="{{ hashkey }}">
-				<script>
-					$(function(){
-
-        $('.captcha').click(function(){
-        console.log('click');
-         $.getJSON("/captcha/refresh/",
-                  function(result){
-             $('.captcha').attr('src', result['image_url']);
-             $('#id_captcha_0').val(result['key'])
-          });});
-				</script>
+				  <input id="id_captcha_0" name="captcha_0" type="hidden" value="{{ hashkey }}">
 			</p>
-			<input type="submit" value="提交">  
+			<input type="submit" value="提交" formmethod="post">
+
 		</form>
+		<script>
+				$('#captcha').click(function(){
+					console.log('click');
+					$.getJSON("/captcha/refresh/", function (result) {
+						$('#captcha').attr('src', result['image_url']);
+						$('#id_captcha_0').val(result['key'])
+					});
+				});
+		</script>
+
 		<br>
 		<a href="/Register"><button>注册</button></a>
 	</div>
