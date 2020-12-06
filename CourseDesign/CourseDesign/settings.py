@@ -31,17 +31,19 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'StudentInfo',
     'GoodShowTest',
     'Insertgoods',
-    'SearchApp',
+    'itemInfo',
     'Login',
-    'Register',
     'Model',
+    'ModifyComment',
     'ModifyGoods',
     'ModifyInfo',
     'OrderCheck',
+    'Register',
+    'SearchApp',
     'ShowInfo',
+    'StudentInfo',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
