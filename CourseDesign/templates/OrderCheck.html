@@ -32,7 +32,26 @@
 			</li>
 		</ul>
 	</div>
-
+	<script type="text/javascript">
+	function status(a){
+		if(a == 1)
+		{
+			return '未出售';
+		}
+		if(a == 2)
+		{
+			return '已购买，待卖家确认';
+		}
+		if(a == 3)
+		{
+			return '待卖家确认出售';
+		}
+		if(a == 4)
+		{
+			return '已出售';
+		}
+	}
+	</script>
 	<div class="selfTransMessages">
 		<p style="text-align:center">You have {{ len }} item(s) on sell</p>
 		{% for tran in Trans %}
@@ -40,7 +59,7 @@
 				<dl>
 
 					<dt>
-						<a href="/itemInfo/?id={{ tran.ID }}">
+						<a>
 							<img src="{{tran.image}}" alt="图片" width="100px" height="auto">
 							<p>Transaction ID: {{ tran.ID }}</p>
 							<p>Name: {{ tran.Name }}</p>
