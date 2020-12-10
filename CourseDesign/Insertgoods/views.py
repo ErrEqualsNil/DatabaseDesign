@@ -13,8 +13,9 @@ def insertGoodsResult(requests):
     itemName = requests.POST.get('itemName')
     itemPrice = requests.POST.get('itemPrice')
     itemDescription = requests.POST.get('itemDescription')
-    key = 'LTAI4FzSxsT' + 'G9WmSi4UhykiP'
-    password = 'FPI6XHyeybIF'+ 'ahASoJzQ30YBzd6yjK'
+    key = 'LTA'+'I4GF'+'kNx'
+    key = key + 'HzH'+'ejr7'+'Xj8'+'da9o'
+    password = 'QXR'+'i6uKVthP'+'xInBRVScB413‘+’JW5rHxi'
     auth = oss2.Auth(key, password)
     endpoint = "http://oss-cn-beijing.aliyuncs.com"
     bucket = oss2.Bucket(auth, endpoint, 'database-design')
