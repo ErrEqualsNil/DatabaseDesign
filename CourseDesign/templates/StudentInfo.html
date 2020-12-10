@@ -12,6 +12,24 @@
 	.PersonalInfoList {list-style-type: none;}
 	.InfoHead {font-size:20px;}
 	.InfoContent {font-size: 15px; margin-left:20px;}
+	.list_box .itemMessages {
+	float:left;
+	border-style: double;
+	width: 200px;
+    height: 300px;
+    justify-content: space-around;
+    text-align:center;
+    margin:10px;
+    }
+    .list_box .itemMessages #itemImage {
+    width:90%;
+    margin:5px;
+    height:100px;
+    }
+    #itemInfo {text-decoration:none;}
+    #itemOwnerInfo{ color:gray; font-size: 10px;}
+    #itemPrice{font-size: 20px; color:red; }
+    #itemName {font-size: 15px; color:black;}
 
 	.notice {
 		width:8px;
@@ -148,6 +166,33 @@
 				<button>上传商品</button>
 		</a>
 		<br>
+	</div>
+
+	<div class="selfPurchase Messages">
+		<p style="text-align:center">You have purchase {{ len }} item(s)</p>
+
+		<div class="list_box">
+			{% for good in purchase_list %}
+			<div class="itemMessages">
+				<div class="itemImageBox">
+					<a href="/itemInfo/?id={{ good.commodity.id }}">
+						<img  id="itemImage" src="https://database-design.oss-cn-beijing.aliyuncs.com/{{good.commodity.image}}" alt="商品图片">
+					</a>
+				</div>
+				<div class="itemMessageBox">
+					<a href="/itemInfo/?id={{ good.commodity.id }}" id="itemInfo">
+						<p id="itemPrice">￥{{ good.commodity.price }}</p>
+						<p id="itemName">{{ good.commodity.name }}</p>
+					</a>
+					<a href="/showInfo/?id={{ good.commodity.owner }}" id="itemOwnerInfo">
+						<p id="itemOwner">Owner: {{ good.commodity.owner }}</p>
+						<p>Status: {{good.status}}</p>
+					</a>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+
 	</div>
 
 

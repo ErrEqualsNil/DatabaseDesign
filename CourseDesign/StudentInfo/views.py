@@ -21,7 +21,23 @@ def InfoPage(request):
                       'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.image)})
     sellConfirm = Transaction.objects.filter(seller=request.session['user'], status=2)
     request.session['message'] = len(sellConfirm)
-    return render(request, 'StudentInfo.html', {'datas': userInfo, 'goods': goods, 'len': len(goods)})
+
+    transaction_list = Transaction.objects.filter(buyer=request.session['user'])
+    purchase_list = [{'commodity': t.commodity, 'status': t.status} for t in transaction_list]
+    for purchase in purchase_list:
+        if purchase['status'] == 2:
+            purchase['status'] = "等待卖家确认"
+        elif purchase['status'] == 3:
+            purchase['status'] = "卖家已确认，等待确认收货"
+        else:
+            purchase['status'] = "交易已完成"
+    print(purchase_list)
+    return render(request, 'StudentInfo.html', {
+        'datas': userInfo,
+        'goods': goods,
+        'len': len(goods),
+        'purchase_list': purchase_list
+    })
 
 
 def DeleteItem(request):

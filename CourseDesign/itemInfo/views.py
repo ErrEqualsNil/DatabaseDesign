@@ -16,10 +16,13 @@ def itemInfo(request):
             'ownerName': ownerName,
             'price': item.price,
             'description': item.description,
-            'status': item.status
+            'status': int(item.status)
         }
+        if 'user' not in request.session:
+            itemInfos['status'] = 3  # 用户未登录，隐藏购买按钮
         return render(request, 'itemInfo.html', itemInfos)
     except Exception as e:
+        print(e)
         return render(request, 'return.html',
                       {'message': '暂无该商品信息', 'href': "/search"})
 

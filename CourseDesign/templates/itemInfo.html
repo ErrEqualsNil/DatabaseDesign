@@ -54,13 +54,15 @@
                 <p id="itemOwner">
                     <a href="/showInfo/?id={{ownerID}}">出售人：{{ownerName}}</a>
                 </p>
-				{% if status %}
+				{% if status == 1 %}
 				<a href="finishPurchase/?id={{ID}}&sellerID={{ownerID}}">
 					<button>确认购买</button>
 				</a>
-				{% else %}
+				{% elif status == 0 %}
 				<p>该商品已被购买</p>
-				{% endif%}
+				{% else %}
+				<p>请登录后购买</p>
+				{% endif %}
             </div>
         </div>
 
