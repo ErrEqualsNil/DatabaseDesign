@@ -28,7 +28,15 @@
     #itemPrice{font-size: 20px; color:red; }
     #itemName {font-size: 15px; color:black;}
     #itemOwner {font-size: 10px; color:gray;}
-
+	.comments{
+		clear: both;
+		margin-left: 30px;
+		margin-top: 250px;
+	}
+	.comments #comment_label{
+		font-size: 120%;
+		color: red;
+	}
 	</style>
 </head>
 <body>
@@ -82,27 +90,14 @@
 		</div>
 		{% endfor %}
 	</div>
-	<div class="selfTransMessages">
-		{% for tran in trans %}
-		<div class="list_box">
-				<dl>
 
-					<dt>
-						<a>
-							<img src="{{tran.image}}" alt="图片" width="100px" height="auto">
-							<p>Transaction ID: {{ tran.ID }}</p>
-							<p>Name: {{ tran.Name }}</p>
-							<p>Price: {{ tran.Price }}</p>
-							<p>Description: {{tran.Description}}</p>
-							<p>Seller: {{ tran.Seller }}</p>
-							<p>Buyer: {{ tran.Buyer }}</p>
-							<p>Status: {{ tran.Statue }}</p>
-							<p>Comment: {{tran.Comment}}</p>
-						</a>
-					</dt>
-				</dl>
-		</div>
-		{% endfor %}
+	<div class="comments">
+		<p id="comment_label">收获的评价</p>
+		<ul>
+			{% for comment in comments %}
+			<li>{{comment}}</li>
+			{% endfor %}
+		</ul>
 	</div>
 
 </body>

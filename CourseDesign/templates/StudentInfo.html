@@ -30,7 +30,7 @@
     #itemOwnerInfo{ color:gray; font-size: 10px;}
     #itemPrice{font-size: 20px; color:red; }
     #itemName {font-size: 15px; color:black;}
-
+	#ConfirmReceivedButton {font-size: 15px; color: #673880}
 	.notice {
 		width:8px;
 		height:8px;
@@ -124,7 +124,6 @@
 		</ul>
 	</div>
 	<a href="/modifyInfo/?account={{ datas.Account }}">修改个人信息</a>
-	<a href="/OrderCheck/">订单查询</a>
 	<script type="text/javascript">
 	function Confirm(){
 		if(confirm("删除后无法恢复，是否删除"))
@@ -156,14 +155,13 @@
 					</dt>
 					<a href="/modifyGoods/?id={{ good.ID }}">修改</a>
 				</dl>
-
 			</div>
 			{% endfor %}
 			<input type="submit" value="删除" onclick="return Confirm();">
 		</form>
 		<br>
 		<a href="/insertGoods">
-				<button>上传商品</button>
+			<button>上传商品</button>
 		</a>
 		<br>
 	</div>
@@ -186,8 +184,12 @@
 					</a>
 					<a href="/showInfo/?id={{ good.commodity.owner }}" id="itemOwnerInfo">
 						<p id="itemOwner">Owner: {{ good.commodity.owner }}</p>
+					</a>
+					{% if good.transaction_id != -1%}
+					<a href="/ModifyComment/?id={{ good.transaction_id }}" id="ConfirmReceivedButton">
 						<p>Status: {{good.status}}</p>
 					</a>
+					{% endif %}
 				</div>
 			</div>
 			{% endfor %}
