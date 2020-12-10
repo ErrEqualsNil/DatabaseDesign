@@ -13,7 +13,7 @@ def OrderPage(requests):
     Commodity1 = Commodity.objects.filter(status=True)
     Trans = []
     for tra in Transaction1:
-        Trans.append({'ID':tra.id, 'Name': tra.commodity.name, 'Price':tra.commodity.price, 'Seller':tra.seller,
+        Trans.append({'ID':tra.id, 'Name': tra.commodity.name, 'Price':tra.commodity.price, 'Seller':tra.seller, 'Comment': tra.comment,
                     'Buyer':requests.session['user'], 'Description':tra.commodity.description, 'Statue':tra.status,
                     'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(tra.commodity.image)})
     return render(requests, 'OrderCheck.html', {'Trans':Trans, 'len':len(Trans)})
