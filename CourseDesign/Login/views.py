@@ -56,9 +56,9 @@ def loginResult(requests):
 
                     return render(requests, 'return.html', {'message': "登录成功", 'href': "/search"})
                 else:
-                    return render(requests, 'return.html', {'message': "账号或密码错误", 'href':"/login"})
+                    return render(requests, 'return.html', {'message': "账号或密码错误", 'href': "/login"})
         else:
-            return render(requests, 'return.html', {'message': "请输入账号密码", 'href':"/login"})
+            return render(requests, 'return.html', {'message': "请输入账号密码", 'href': "/login"})
 
 def reLogin(requests):
     requests.session.flush()

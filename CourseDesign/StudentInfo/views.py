@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect
 import oss2
 
 # Create your views here.
+
+
 def InfoPage(request):
     if 'user' not in request.session:
         return HttpResponseRedirect("/login")

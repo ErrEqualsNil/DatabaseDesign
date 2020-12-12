@@ -38,6 +38,6 @@ def registerResult(requests):
                                    QQ=qq, tel=tel,
                                    email=email)
     except Exception as e:
-        messages.success(requests, "Account already exist")
+        messages.success(requests, "账号已存在")
         return HttpResponseRedirect('/Register')
     return render(requests, 'return.html', {'message': "注册成功", 'href': "/login"})
