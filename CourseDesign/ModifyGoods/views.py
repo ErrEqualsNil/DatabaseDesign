@@ -19,7 +19,7 @@ def modifyResult(requests):
     id = requests.GET.get('id')
     key = 'LTA'+'I4GF'+'kNx'
     key = key + 'HzH'+'ejr7'+'Xj8'+'da9o'
-    password = 'QXR'+'i6uKVthP'+'xInBRVScB413‘+’JW5rHxi'
+    password = 'QXR'+'i6uKVthP'+'xInBRVScB413'+'JW5rHxi'
     auth = oss2.Auth(key, password)
     endpoint = "http://oss-cn-beijing.aliyuncs.com"
     bucket = oss2.Bucket(auth, endpoint, 'database-design')
