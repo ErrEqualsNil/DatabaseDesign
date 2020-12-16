@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from Model.models import Commodity, Transaction
 # Create your views here.
 
+
 def searchResult(request):
     searchKey = request.GET.get('searchKey')
     keys = searchKey.split(' ')

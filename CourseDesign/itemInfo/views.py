@@ -3,6 +3,7 @@ from Model.models import Commodity, Transaction, User
 from django.db import transaction
 # Create your views here.
 
+
 def itemInfo(request):
     try:
         itemID = request.GET.get('id')
@@ -25,6 +26,7 @@ def itemInfo(request):
         print(e)
         return render(request, 'return.html',
                       {'message': '暂无该商品信息', 'href': "/search"})
+
 
 def finishPurchase(requests):
     buyer = requests.session['user']
