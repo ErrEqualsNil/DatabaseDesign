@@ -3,4 +3,5 @@ from . import views
 urlpatterns = [
     path('', views.loadHTML),
     path(r'messageConfirm/', views.ConfirmMessage),
+    path(r'messageCancel/', views.cancel),
 ]

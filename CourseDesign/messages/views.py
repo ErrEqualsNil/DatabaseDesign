@@ -23,3 +23,13 @@ def ConfirmMessage(requests):
     return render(requests, 'return.html',
                   {'message': "确认出售，请联系买家", 'href': "/messages"})
 
+def cancel(requests):
+    TID = requests.GET.get('TID')
+    trans = Transaction.objects.filter(id=TID)[0]
+    commodity = TID.commodity
+    trans.status = 1
+    trans.save()
+    commodity.status = True
+    commodity.save()
+    return render(requests, 'return.html',
+                  {'message': "取消出售", 'href': "/messages"})
