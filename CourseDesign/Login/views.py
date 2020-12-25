@@ -53,8 +53,8 @@ def loginResult(requests):
                 if Teacher.objects.filter(id=account, password=password):
                     requests.session['user'] = account
                     requests.session['type'] = 'Teacher'
-
-                    return render(requests, 'return.html', {'message': "登录成功", 'href': "/search"})
+                    return
+                    return render(requests, 'return.html', {'message': "登录成功", 'href': "/Teacherserf"})
                 else:
                     return render(requests, 'return.html', {'message': "账号或密码错误", 'href': "/login"})
         else:
