@@ -48,13 +48,13 @@ def loginResult(requests):
                     requests.session['message'] = len(sellConfirm)
                     return render(requests, 'return.html', {'message': "登录成功", 'href': "/search"})
                 else:
-                    return render(requests, 'return.html', {'message': "账号或密码错误", 'href':"/login"})
+                    return render(requests, 'return.html', {'message': "账号或密码错误", 'href': "/login"})
             else:
                 if Teacher.objects.filter(id=account, password=password):
                     requests.session['user'] = account
                     requests.session['type'] = 'Teacher'
 
-                    return render(requests, 'return.html', {'message': "登录成功", 'href': "/Teacherserf"})
+                    return render(requests, 'return.html', {'message': "登录成功", 'href': "/teachers"})
                 else:
                     return render(requests, 'return.html', {'message': "账号或密码错误", 'href': "/login"})
         else:
