@@ -1,0 +1,72 @@
+Index: CourseDesign/Login/admin.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from django.contrib import admin\r\n\r\n# Register your models here.\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- CourseDesign/Login/admin.py	(revision 82cef7be9b8aad42a22349158635e3c0ff081d85)
++++ CourseDesign/Login/admin.py	(date 1608881415327)
+@@ -1,3 +1,41 @@
+ from django.contrib import admin
+-
++def login_view(request):
++    #处理GET请求
++    if request.method == 'GET':
++        #1, 首先检查session，判断用户是否第一次登录，如果不是，则直接重定向到首页
++        if 'username' in request.session:  #request.session 类字典对象
++            return HttpResponseRedirect('/index/allbook')
++        #2, 然后检查cookie，是否保存了用户登录信息
++        if 'username' in request.COOKIES:
++            #若存在则赋值回session，并重定向到首页
++            request.session['username'] = request.COOKIES['username']
++            return HttpResponseRedirect('/index/allbook')
++        #不存在则重定向登录页，让用户登录
++        return render(request, 'user/login.html')
++    # 处理POST请求
++    elif request.method == 'POST':
++        username = request.POST.get('username')
++        password = request.POST.get('password')
++        m = hashlib.md5()
++        m.update(password.encode())
++        password_m = m.hexdigest()
++        #判断输入是否其中一项为空或者格式不正确
++        if not username or not password:
++            error = '你输入的用户名或者密码错误 !'
++            return render(request, 'user/login.html', locals())
++        #若输入没有问题则进入数据比对阶段，看看已经注册的用户中是否存在该用户
++        users = User.objects.filter(username=username, password=password_m)
++        # 由于使用了filter, 所以返回值user是一个数组，但是也要考虑其为空的状态，即没有查到该用户
++        if not users:
++            error = '用户不存在或用户密码输入错误!!'
++            return render(request, 'user/login.html', locals())
++        # 返回值是个数组，并且用户名具备唯一索引，当前用户是该数组中第一个元素
++        users = users[0]
++        request.session['username'] = username
++        response = HttpResponseRedirect('/index/allbook')
++        #检查post 提交的所有键中是否存在 isSaved 键
++        if 'isSaved' in request.POST.keys():
++            #若存在则说明用户选择了记住用户名功能，执行以下语句设置cookie的过期时间
++            response.set_cookie('username', username, 60*60*24*7)
++        return response
+ # Register your models here.
+Index: CourseDesign/Login/views.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from django.http import JsonResponse\r\nfrom django.shortcuts import render\r\nfrom django import forms\r\nfrom captcha.fields import CaptchaField, CaptchaStore\r\nfrom captcha.views import captcha_image_url\r\nfrom django.contrib import messages\r\nfrom Model.models import User, Teacher, Transaction\r\nimport json\r\n\r\n\r\nclass Capt(forms.Form):\r\n    captcha = CaptchaField(\r\n        label='验证码',\r\n        required=True,\r\n        error_messages={\r\n            'required': '验证码不能为空'\r\n        }\r\n    )\r\n\r\n\r\ndef loginPage(request):\r\n    hashkey = CaptchaStore.generate_key()\r\n    image_url = captcha_image_url(hashkey)\r\n    login_form = Capt()\r\n    return render(request, 'login.html', locals())\r\n\r\ndef loginResult(requests):\r\n    if requests.is_ajax():\r\n        result = dict()\r\n        result['key'] = CaptchaStore.generate_key()\r\n        result['image_url'] = captcha_image_url(result['key'])\r\n        print(1)\r\n        return JsonResponse(result)\r\n    if requests.method == 'POST':\r\n        account = requests.POST.get('id')\r\n        password = requests.POST.get('password')\r\n        identity = requests.POST.get('identity')\r\n        print('identity ', identity)\r\n        capt = Capt(requests.POST)\r\n        if not capt.is_valid():\r\n            return render(requests, 'return.html', {'message': \"验证码错误\", 'href': \"/login\"})\r\n        if account and password:\r\n            if identity == 'Student':\r\n                if User.objects.filter(id=account, password=password):\r\n                    requests.session['user'] = account\r\n                    requests.session['type'] = 'Student'\r\n                    sellConfirm = Transaction.objects.filter(seller=requests.session['user'], status=2)\r\n                    requests.session['message'] = len(sellConfirm)\r\n                    return render(requests, 'return.html', {'message': \"登录成功\", 'href': \"/search\"})\r\n                else:\r\n                    return render(requests, 'return.html', {'message': \"账号或密码错误\", 'href':\"/login\"})\r\n            else:\r\n                if Teacher.objects.filter(id=account, password=password):\r\n                    requests.session['user'] = account\r\n                    requests.session['type'] = 'Teacher'\r\n\r\n                    return render(requests, 'return.html', {'message': \"登录成功\", 'href': \"/search\"})\r\n                else:\r\n                    return render(requests, 'return.html', {'message': \"账号或密码错误\", 'href': \"/login\"})\r\n        else:\r\n            return render(requests, 'return.html', {'message': \"请输入账号密码\", 'href': \"/login\"})\r\n\r\ndef reLogin(requests):\r\n    requests.session.flush()\r\n    return render(requests, 'return.html', {'message': \"退出登录成功\", 'href':\"/login\"})
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- CourseDesign/Login/views.py	(revision 82cef7be9b8aad42a22349158635e3c0ff081d85)
++++ CourseDesign/Login/views.py	(date 1608885822764)
+@@ -53,8 +53,8 @@
+                 if Teacher.objects.filter(id=account, password=password):
+                     requests.session['user'] = account
+                     requests.session['type'] = 'Teacher'
+-
+-                    return render(requests, 'return.html', {'message': "登录成功", 'href': "/search"})
++                    return
++                    return render(requests, 'return.html', {'message': "登录成功", 'href': "/Teacherserf"})
+                 else:
+                     return render(requests, 'return.html', {'message': "账号或密码错误", 'href': "/login"})
+         else:
