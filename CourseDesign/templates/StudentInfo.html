@@ -12,7 +12,10 @@
 	.PersonalInfoList {list-style-type: none;}
 	.InfoHead {font-size:20px;}
 	.InfoContent {font-size: 15px; margin-left:20px;}
-	.list_box .itemMessages {
+	.selfPurchase_Messages{
+		clear: both;
+	}
+	.itemMessages {
 	float:left;
 	border-style: double;
 	width: 200px;
@@ -21,7 +24,7 @@
     text-align:center;
     margin:10px;
     }
-    .list_box .itemMessages #itemImage {
+    #itemImage {
     width:90%;
     margin:5px;
     height:100px;
@@ -30,6 +33,17 @@
     #itemOwnerInfo{ color:gray; font-size: 10px;}
     #itemPrice{font-size: 20px; color:red; }
     #itemName {font-size: 15px; color:black;}
+	.itemMessages dl {border: none;}
+	#selfItemImage {
+    width:90%;
+    margin:5px;
+    height:100px;
+    }
+	.operations {clear: both;}
+    #selfItemPrice{font-size: 15px; color:red; }
+    #selfItemName {font-size: 15px; color:black;}
+	#modifySelfItemInfo{color: black; font-size: 20px}
+
 	#ConfirmReceivedButton {font-size: 15px; color: #673880}
 	.notice {
 		width:8px;
@@ -137,37 +151,48 @@
 	}
 	</script>
 
-	<div class="selfItemMessages">
+	<div class="self_item_Messages">
 		<p style="text-align:center">You have {{ len }} item(s) on sell</p>
-		<form action="DeleteItem" method="POST">
-			{% csrf_token %}
-			{% for good in goods %}
-			<div class="list_box">
-				<dl>
-					<dt><label><input name="choose" type="checkbox" value={{ good.ID }} style="padding-right: 10px"/></label></dt>
-					<dt>
-						<a href="/itemInfo/?id={{ good.ID }}">
-							<img src="{{good.image}}" alt="图片" width="100px" height="auto">
-							<p>Item ID: {{ good.ID }}</p>
-							<p>Name: {{ good.Name }}</p>
-							<p>Price: {{ good.Price }}</p>
-						</a>
-					</dt>
-					<a href="/modifyGoods/?id={{ good.ID }}">修改</a>
-				</dl>
+		<div class="list_box">
+			<form action="DeleteItem" method="POST" style="">
+				{% csrf_token %}
+				{% for good in goods %}
+				<div class="itemMessages">
+					<dl>
+						<dt><label><input name="choose" type="checkbox" value={{ good.ID }} style="padding-right: 10px"/></label></dt>
+						<dt>
+							<a href="/itemInfo/?id={{ good.ID }}">
+								<div class="itemImageBox">
+									<img src="{{ good.image }}" alt="图片" width="100px" height="auto" id="selfItemImage">
+								</div>
+								<div id="selfItemInfo">
+									<p id="selfItemName">{{ good.Name }}</p>
+									<p id="selfItemPrice">￥{{ good.Price }}</p>
+								</div>
+							</a>
+						</dt>
+						<a href="/modifyGoods/?id={{ good.ID }}" id="modifySelfItemInfo">修改</a>
+					</dl>
+				</div>
+				{% endfor %}
+				<div class="operations">
+					<input type="submit" value="删除" onclick="return Confirm();">
+				</div>
+			</form>
+
+			<br>
+			<div class="operations">
+				<a href="/insertGoods"><button>上传商品</button></a>
 			</div>
-			{% endfor %}
-			<input type="submit" value="删除" onclick="return Confirm();">
-		</form>
-		<br>
-		<a href="/insertGoods">
-			<button>上传商品</button>
-		</a>
-		<br>
+			<br>
+		</div>
 	</div>
 
-	<div class="selfPurchase Messages">
-		<p style="text-align:center">You have purchase {{ len }} item(s)</p>
+
+	<div class="selfPurchase_Messages">
+		<br>
+		<HR>
+		<p style="text-align:center">You have purchase {{ purchase_len }} item(s)</p>
 
 		<div class="list_box">
 			{% for good in purchase_list %}

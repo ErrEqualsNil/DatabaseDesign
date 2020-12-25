@@ -40,6 +40,7 @@ def InfoPage(request):
         'datas': userInfo,
         'goods': goods,
         'len': len(goods),
+        'purchase_len': len(purchase_list),
         'purchase_list': purchase_list
     })
 
