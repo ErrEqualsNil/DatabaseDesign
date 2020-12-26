@@ -66,9 +66,7 @@
         cellpadding="20" >
         {% for good in goods %}
         <tr>
-            <td>123456</td>
-            <td>商品价格：{{good.price}}</td>
-            <td>商品名称：{{goods.name}}</td>
+           <option value="{{ good.name}}">{{ good.name }}</option>
         </tr>
         {% endfor %}
         </table>
