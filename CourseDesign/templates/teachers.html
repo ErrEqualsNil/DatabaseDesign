@@ -39,8 +39,10 @@
         <tr>
 
             <td>{{good.Name}}</td>
-            <td>{{good.Seller}}</td>
-            <td>{{good.Buyer}}</td>
+            <td>{{good.Price}}</td>
+            <td>{{good.Description}}</td>
+            <td>{{good.Owner}}</td>
+            <td>{{good.image}}</td>
             <td><a href="delete?id={{good.ID}}"><button>删除</button></a></td>
 
         </tr>
@@ -57,7 +59,7 @@
         cellpadding="20" >
         {% for trans in trans2 %}
         <tr>
-            <td>商品id{{trans.ID}}</td>
+            <td>商品id：{{trans.ID}}</td>
             <td>{{trans.Buyer}}</td>
             <td>{{trans.Seller}}</td>
             <td>{{trans.Comment}}</td>
