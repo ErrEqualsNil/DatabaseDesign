@@ -9,15 +9,7 @@
     .toolbar ul {width: auto;list-style-type: none;white-space:nowrap;overflow: hidden;margin-left: 5%;padding: 0;}
     .toolbar li { float:left; margin-right:2%; position: relative; overflow: hidden;vertical-align: middle;}
     .toolbar li a{ display: block; color:white; text-align: center; padding: 3px; overflow: hidden; text-decoration: none;}
-    .itemMessages {
-	float:left;
-	border-style: double;
-	width: 200px;
-    height: 300px;
-    justify-content: space-around;
-    text-align:center;
-    margin:10px;
-    }
+
 </style>
 </head>
 <body>
@@ -48,19 +40,13 @@
 	</div>
     </div>
        <table border="1">
-            <caption>Monthly savings</caption>
+            <caption>商品交易记录</caption>
+            {% for good in goods %}
             <tr>
-                <th>Month</th>
-                <th>Savings</th>
+                <th>{{good.id}}</th>
+
             </tr>
-            <tr>
-                <td>January</td>
-                <td>$100</td>
-            </tr>
-            <tr>
-                <td>February</td>
-                 <td>$50</td>
-            </tr>
+
         </table>
 
 
