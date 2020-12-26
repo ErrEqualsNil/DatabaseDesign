@@ -12,7 +12,7 @@ def GoodInfo(request):
                       'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.image)})
     return render(request, 'teachers.html', {
         'goods': goods,
-        'len': len(goods),
+
     })
 
 
