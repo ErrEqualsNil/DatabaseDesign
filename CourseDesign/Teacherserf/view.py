@@ -13,25 +13,6 @@ def GoodInfo(request):
     sellConfirm = Transaction.objects.filter(seller=request.session['user'], status=2)
     request.session['message'] = len(sellConfirm)
 
-    transaction_list = Transaction.objects.filter(buyer=request.session['user'])
-    purchase_list = [{'commodity': t.commodity, 'status': t.status, 'transaction_id': t.id} for t in transaction_list]
-    for purchase in purchase_list:
-        if purchase['status'] == 2:
-            purchase['status'] = "等待卖家确认"
-            purchase['transaction_id'] = -1
-        elif purchase['status'] == 3:
-            purchase['status'] = "卖家已确认，点击确认收货"
-        else:
-            purchase['status'] = "交易已完成"
-            purchase['transaction_id'] = -1
-    print(purchase_list)
-    return render(request, 'StudentInfo.html', {
-        'datas': userInfo,
-        'goods': goods,
-        'len': len(goods),
-        'purchase_len': len(purchase_list),
-        'purchase_list': purchase_list
-    })
 
 
 def DeleteItem(request):
