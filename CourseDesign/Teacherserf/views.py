@@ -19,6 +19,7 @@ def TransInfo(request):
     trans2 = []
     for trans in trans_list2:
         trans2.append({'ID': trans.id, 'Buyer': trans.buyer, 'Seller': trans.seller, 'Comment': trans.comment})
+
     trans_list3 = Transaction.object.filter(status=3)
     trans3 = []
     for trans in trans_list3:
