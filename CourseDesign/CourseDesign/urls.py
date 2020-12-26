@@ -34,5 +34,5 @@ urlpatterns = [
     path('ModifyComment/', include('ModifyComment.urls')),
     path('messages/', include('messages.urls')),
     path('captcha/', include('captcha.urls')),
-    path('teacher/', include('Teacherserf.urls'))
+    path('teachers/', include('Teacherserf.urls'))
 ]
