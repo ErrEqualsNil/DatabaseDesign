@@ -55,9 +55,24 @@
             </tr>
 
         </table>
-        <table border="1"
-        cellpadding="20" >
+        <table border="1" cellpadding="20" align="center">
         {% for trans in trans2 %}
+        <tr>
+            <td>商品id：{{trans.ID}}</td>
+            <td>{{trans.Buyer}}</td>
+            <td>{{trans.Seller}}</td>
+            <td>{{trans.Comment}}</td>
+        </tr>
+        {% endfor %}
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+            <tr>
+                <td align="center" class="biaoti"  >卖家已确认</td>
+            </tr>
+
+        </table>
+        <table border="1" cellpadding="20" align="center">
+        {% for trans in trans %}
         <tr>
             <td>商品id：{{trans.ID}}</td>
             <td>{{trans.Buyer}}</td>
