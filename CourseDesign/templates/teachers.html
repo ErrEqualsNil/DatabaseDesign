@@ -37,12 +37,14 @@
         <table border="1" cellpadding="20" >
         {% for good in goods %}
         <tr>
-            <td>123456</td>
+
             <td>{{good.Name}}</td>
             <td>{{good.Seller}}</td>
             <td>{{good.Buyer}}</td>
+            <a href="delete?id={{good.ID}}"><button>删除</button></a>
         </tr>
         {% endfor %}
+
         </table>
         <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
             <tr>

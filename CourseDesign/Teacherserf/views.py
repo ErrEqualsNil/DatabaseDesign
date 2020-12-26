@@ -27,7 +27,10 @@ def GoodInfo(request):
         'trans3': trans3,
         'goods': goods,
     })
-
+def Delete(request)
+    id=request.GET.get(ID)
+    Commodity.objects.get(id=id).delete()
+    return HttpResponseRedirect("/teachers")
 
 
 
