@@ -47,12 +47,12 @@
         </table>
         <table border="1"
         cellpadding="10" >
-        {% for good in goods %}
+        {% for trans in transl %}
         <tr>
-            <td>{{good.name}}</td>
-            <td>{{good.price}}</td>
-            <td>{{good.seller}}</td>
-            <td>{{good.buyer}}</td>
+            <td>{{trans.name}}</td>
+            <td>{{trans.price}}</td>
+            <td>{{trans.seller}}</td>
+            <td>{{trans.buyer}}</td>
         </tr>
         {% endfor %}
         </table>
