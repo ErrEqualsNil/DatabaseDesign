@@ -47,7 +47,7 @@
         </table>
         <table border="1"
         cellpadding="20" >
-        {% for go in goods %}
+        {% for good in goods %}
         <tr>
             <td>123456</td>
             <td>{{trans.price}}</td>
@@ -62,7 +62,17 @@
             </tr>
 
         </table>
-
+        <table border="1"
+        cellpadding="20" >
+        {% for good in goods %}
+        <tr>
+            <td>123456</td>
+            <td>{{trans.price}}</td>
+            <td>{{trans.seller}}</td>
+            <td>{{trans.buyer}}</td>
+        </tr>
+        {% endfor %}
+        </table>
     </div>
 </body>
 </html>
