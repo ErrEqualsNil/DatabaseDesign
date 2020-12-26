@@ -10,9 +10,6 @@ def GoodInfo(request):
     for good in good_list:
         goods.append({'ID': good.id, 'Name': good.name, 'Price': good.price, 'Description': good.description, 'Owner':good.owner,
                       'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.image)})
-    print(goods)
-
-
     trans_list2 = Transaction.objects.filter(status=2)
     trans2 = []
     for trans in trans_list2:
@@ -27,8 +24,8 @@ def GoodInfo(request):
         'trans3': trans3,
         'goods': goods,
     })
-def Delete(request)
-    id=request.GET.get(ID)
+def Delete(request):
+    id=request.GET.get('id')
     Commodity.objects.get(id=id).delete()
     return HttpResponseRedirect("/teachers")
 
