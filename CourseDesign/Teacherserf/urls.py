@@ -4,6 +4,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.GoodInfo)
-
+    path('', views.GoodInfo),
+    path('', views.TransInfo)
 ]

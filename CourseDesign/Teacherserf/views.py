@@ -14,7 +14,14 @@ def GoodInfo(request):
         'goods': goods,
 
     })
-
+def TransInfo(request):
+    trans_list = Transaction.object.filter()
+    transl = []
+    for trans in trans_list:
+        transl.append({'ID': trans.id, 'Buyer': trans.buyer, 'Seller': trans.seller, 'Comment': trans.comment})
+    return render(request, 'teacher.html', {
+        'transl': transl,
+    })
 
 
 
