@@ -18,4 +18,4 @@ def GoodInfo(request):
 
 
 
-)
+
