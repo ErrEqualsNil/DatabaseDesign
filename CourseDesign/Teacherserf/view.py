@@ -5,13 +5,16 @@ from django.http import HttpResponseRedirect
 import oss2
 
 def GoodInfo(request):
-    good_list = Commodity.objects.filter(owner=request.session['user'], status=True)
+    good_list = Commodity.objects.filter(status=True)
     goods = []
     for good in good_list:
-        goods.append({'ID': good.id, 'Name': good.name, 'Price': good.price, 'Description': good.description,
+        goods.append({'ID': good.id, 'Name': good.name, 'Price': good.price, 'Description': good.description, 'Owner':good.owner,
                       'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.image)})
-    sellConfirm = Transaction.objects.filter(seller=request.session['user'], status=2)
-    request.session['message'] = len(sellConfirm)
+    return render(request, 'teachers.html', {
+        'goods': goods,
+        'len': len(goods),
+    })
+
 
 
 
