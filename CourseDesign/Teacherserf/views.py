@@ -15,7 +15,7 @@ def GoodInfo(request):
 
     })
 def TransInfo(request):
-    trans_list = Transaction.object.filter()
+    trans_list1 = Transaction.object.filter()
     transl = []
     for trans in trans_list:
         transl.append({'ID': trans.id, 'Buyer': trans.buyer, 'Seller': trans.seller, 'Comment': trans.comment})
