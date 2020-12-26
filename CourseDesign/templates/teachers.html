@@ -9,9 +9,44 @@
     .toolbar ul {width: auto;list-style-type: none;white-space:nowrap;overflow: hidden;margin-left: 5%;padding: 0;}
     .toolbar li { float:left; margin-right:2%; position: relative; overflow: hidden;vertical-align: middle;}
     .toolbar li a{ display: block; color:white; text-align: center; padding: 3px; overflow: hidden; text-decoration: none;}
-
+</style>
 </head>
 <body>
+    <div class="toolbar">
+		<ul>
+			<li>
+				<a href="/search">Database Course Design</a>
+			</li>
+			<li>
+				<a href="/search">搜索</a>
+			</li>
+			<li>
+				<a href="/studentinfo">个人信息</a>
+			</li>
 
+			<li>
+				{% if not request.session.user %}
+					<a href="/login">登录</a>
+				{% else %}
+					<a>用户 ： {{request.session.user}}</a>
+				{% endif %}
+			</li>
+			{% if request.session.user %}
+			<li>
+				<a href="/login/reLogin">注销</a>
+			</li>
+			{% endif %}
+			<li style="float:right; margin-right:40px;width:70px">
+				<a href="/messages" >信息  </a>
+                    {% if request.session.message > 99 %}
+							<a class="notice" style="width:24px">99+</a>
+						{% elif request.session.message > 9 %}
+							<a class="notice" style="width:16px">{{ request.session.message }}</a>
+						{% elif request.session.message > 0 %}
+							<a class="notice" style="width:8px">{{ request.session.message }}</a>
+						{% endif %}
+			</li>
+		</ul>
+	</div>
 </body>
 </html>
