@@ -45,14 +45,13 @@
             </tr>
 
         </table>
-        <table border="1"
-        cellpadding="20" >
+        <table border="1" cellpadding="20" >
         {% for good in goods %}
         <tr>
             <td>123456</td>
-            <td>{{good.name}}</td>
-            <td>{{trans.seller}}</td>
-            <td>{{trans.buyer}}</td>
+            <td>{{good.Name}}</td>
+            <td>{{good.Seller}}</td>
+            <td>{{good.Buyer}}</td>
         </tr>
         {% endfor %}
         </table>
@@ -64,9 +63,9 @@
         </table>
         <table border="1"
         cellpadding="20" >
-        {% for good in goods %}
+        {% for trans in trans2 %}
         <tr>
-           <option value="{{ good.name}}">{{ good.name }}</option>
+            <td>{{trans.Buyer}}</td>
         </tr>
         {% endfor %}
         </table>

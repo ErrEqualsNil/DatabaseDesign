@@ -10,9 +10,9 @@ def GoodInfo(request):
     for good in good_list:
         goods.append({'ID': good.id, 'Name': good.name, 'Price': good.price, 'Description': good.description, 'Owner':good.owner,
                       'image': "https://database-design.oss-cn-beijing.aliyuncs.com/" + str(good.image)})
+    print(goods)
     return render(request, 'teachers.html', {
         'goods': goods,
-
     })
 def TransInfo(request):
     trans_list2 = Transaction.object.filter(status=2)
