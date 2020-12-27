@@ -10,7 +10,26 @@
     .toolbar ul {width: auto;list-style-type: none;white-space:nowrap;overflow: hidden;margin-left: 5%;padding: 0;}
     .toolbar li {float:left; margin-right:2%; position: relative; overflow: hidden;vertical-align: middle;}
     .toolbar li a{display: block; color:white; text-align: center; padding: 3px; overflow: hidden; text-decoration: none;}
-
+    .list_box .itemMessages {
+	font-size:auto;
+	float:left;
+	border-style: double;
+	width: 200px;
+    height: 250px;
+    justify-content: space-around;
+    text-align:center;
+    margin:10px;
+    }
+    .list_box .itemMessages #itemImage {
+    width:90%;
+    margin:5px;
+    height:100px;
+    }
+    #itemInfo {text-decoration:none;}
+    #itemOwnerInfo{ color:gray;}
+    #itemPrice{font-size: 20px; color:red; }
+    #itemName {font-size: 15px; color:black;}
+    #itemOwner {font-size: 10px; color:gray;}
     .notice {
 		width:8px;
 		height:8px;
@@ -63,13 +82,40 @@
 		</ul>
 	</div>
 	<div class="SearchInput" style="margin-top:100px">
-		<p style="text-align:center; font-size: 100px">二手交易平台</p>
+		<p style="text-align:center; font-size: 50px">SCUT Database Course Design</p>
+		<p style="text-align:center; font-size: 50px">二手商城</p>
 		<form action="searchResult" method="get">
 			<div class="searchInput">
 				<input type="text" name="searchKey">
 				<input type="submit" value="搜索">
 			</div>
 		</form>
+	</div>
+
+	<div class="list_box">
+		<br>
+		<HR>
+		<br>
+		<p>推荐商品</p>
+		<br>
+		{% for good in items %}
+		<div class="itemMessages">
+			<div class="itemImageBox">
+				<a href="/itemInfo/?id={{ good.id }}">
+					<img  id="itemImage" src="https://database-design.oss-cn-beijing.aliyuncs.com/{{good.image}}" alt="商品图片">
+				</a>
+			</div>
+			<div class="itemMessageBox">
+				<a href="/itemInfo/?id={{ good.id }}" id="itemInfo">
+					<p id="itemPrice">￥{{ good.price }}</p>
+					<p id="itemName">{{ good.name }}</p>
+				</a>
+				<a href="/showInfo/?id={{ good.owner }}" id="itemOwnerInfo">
+					<p id="itemOwner">Owner: {{ good.owner }}</p>
+				</a>
+			</div>
+		</div>
+		{% endfor %}
 	</div>
 </body>
 </html>

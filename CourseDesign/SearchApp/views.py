@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from Model.models import Commodity, Transaction
+import random
 # Create your views here.
 
 
@@ -21,5 +22,8 @@ def searchResult(request):
 
 
 def searchPage(requests):
-    return render(requests, 'Search.html')
+    commodities = Commodity.objects.filter(status=1)
+    indices = random.sample(range(0, len(commodities) - 1), min(8, len(commodities) - 1))
+    commodities = [commodities[index] for index in indices]
+    return render(requests, 'Search.html', {'items': commodities})
 
