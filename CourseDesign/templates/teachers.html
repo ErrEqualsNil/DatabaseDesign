@@ -38,10 +38,10 @@
         {% for good in goods %}
         <tr>
 
-            <td>{{good.Name}}</td>
-            <td>{{good.Price}}</td>
-            <td>{{good.Description}}</td>
-            <td>{{good.Owner}}</td>
+            <td>商品名称：{{good.Name}}</td>
+            <td>价格：{{good.Price}}</td>
+            <td>描述：{{good.Description}}</td>
+            <td>卖家：{{good.Owner}}</td>
             <a href="https://database-design.oss-cn-beijing.aliyuncs.com/"></a>
             <td><a href="delete?id={{good.ID}}"><button>删除</button></a></td>
 
