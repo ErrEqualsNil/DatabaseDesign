@@ -40,7 +40,8 @@
     height:100px;
     }
 	.operations {clear: both;}
-    #selfItemPrice{font-size: 15px; color:red; }
+	#modifySelfItemInfo{font-size: 10px; color: black }
+    #selfItemPrice{font-size: 20px; color:red; }
     #selfItemName {font-size: 15px; color:black;}
 	#modifySelfItemInfo{color: black; font-size: 20px}
 
@@ -166,8 +167,8 @@
 									<img src="{{ good.image }}" alt="图片" width="100px" height="auto" id="selfItemImage">
 								</div>
 								<div id="selfItemInfo">
-									<p id="selfItemName">{{ good.Name }}</p>
 									<p id="selfItemPrice">￥{{ good.Price }}</p>
+									<p id="selfItemName">{{ good.Name }}</p>
 								</div>
 							</a>
 						</dt>

@@ -4,5 +4,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
 def startPage(requests):
-    return HttpResponseRedirect("/search")
+    if 'type' not in requests.session or requests.session['type'] == 'student':
+        return HttpResponseRedirect("/search")
+    else:
+        return HttpResponseRedirect("/teachers")
 

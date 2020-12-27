@@ -22,7 +22,7 @@ def commentResult(requests):
     endpoint = "http://oss-cn-beijing.aliyuncs.com"
     bucket = oss2.Bucket(auth, endpoint, 'database-design')
     try:
-        Transaction.objects.filter(id=id).update(comment=transComment)
+        Transaction.objects.filter(id=id).update(comment=transComment, status=4)
         return HttpResponseRedirect('/studentinfo')
     except Exception as e:
         print(e)
